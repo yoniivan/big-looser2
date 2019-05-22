@@ -1,0 +1,23 @@
+.wrapper-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+}
+
+.card-register {
+  width: 30%;
+  padding: 25px;
+}
+
+.btn-register {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+form.Group {
+  padding: 100px;
+}
+
+p {
+}

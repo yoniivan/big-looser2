@@ -1,0 +1,35 @@
+.wrapper-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+}
+
+.card-login {
+  width: 25%;
+  padding: 0;
+}
+
+.btn-form {
+  padding: 25px;
+  width: 100%;
+}
+
+.login-btn {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+.text-muted {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

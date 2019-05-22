@@ -1,0 +1,42 @@
+.wrapper-welcome {
+  display: flex;
+  flex-direction: column;
+}
+
+.weclocme-1 {
+  width: 100%;
+  height: 30%;
+  border-block-end: 1px solid black;
+  background-color: beige;
+  flex-grow: 2;
+}
+
+.welcome-title {
+  padding: 30px;
+}
+
+.welcome-text {
+  padding-top: 30px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom: 30px;
+  align-content: center;
+}
+
+.weclocme-2 {
+  width: 100%;
+  height: 30%;
+  padding: 50px;
+  border-block-end: 1px solid black;
+  background-color: antiquewhite;
+  flex-grow: 1;
+}
+
+.weclocme-3 {
+  width: 100%;
+  height: 30%;
+  padding: 50px;
+  border-block-end: 1px solid black;
+  background-color: antiquewhite;
+  flex-grow: 2;
+}
