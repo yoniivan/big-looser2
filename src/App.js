@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AppRoutes from './Components/Routes';
 import NavigationBar from './Components/Navidation/NavigationBar';
-import Footer from './Components/Footer';
+//import Footer from './Components/Footer';
 
 class App extends Component {
   render() {
@@ -21,17 +21,13 @@ class App extends Component {
   }
 
   if ('/login' === location.pathname) {
-    loginRoute.body.backgroundColor = "#61147a",
-    loginRoute.html.backgroundColor = "#61147a",
-    console.log("pathName = " + location.pathname);
-    console.log(loginRoute.body, loginRoute.html)
-    }
-    if ('/register' === location.pathname) {
+      loginRoute.body.backgroundColor = "#61147a",
+      loginRoute.html.backgroundColor = "#61147a"
+      }
+  if ('/register' === location.pathname) {
       loginRoute.body.backgroundColor = "#401d68",
-      loginRoute.html.backgroundColor = "#401d68",
-      console.log("pathName = " + location.pathname);
-      console.log(loginRoute.body, loginRoute.html)
-    } 
+      loginRoute.html.backgroundColor = "#401d68"
+      } 
 
     return (
       <div style={loginRoute.html}>

@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './Pages/Login';
 import Welcome from './Pages/Welcome';
-import Register from './Pages/Register';
+import Register from './Pages/Register/Register';
 
 
 const AppRoutes = () => {
@@ -10,8 +10,8 @@ const AppRoutes = () => {
       <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Welcome} />
-            <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
           </Switch>
       </BrowserRouter>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Welcome.css';
-import { Col, Card, Form, Button, FormControl, InputGroup } from 'react-bootstrap';
+//import { Col, Card, Form, Button, FormControl, InputGroup } from 'react-bootstrap';
 
 const Welcome = () => {
     return(
