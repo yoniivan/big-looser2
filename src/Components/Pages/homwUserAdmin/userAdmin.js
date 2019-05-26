@@ -7,7 +7,9 @@ import GameElement from '../homwUserAdmin/GameGeneration/gameElement';
 class UserAdmin extends Component {
 
     state = {
-        games: [{id: '0', gameOne: 'test1', gameTwo: 'test1'}],
+        games: [
+            {id: '0', gameOne: 'test1', gameTwo: 'test1'}
+        ],
         id: '',
         gameOne: '',
         gameTwo: '',
@@ -36,21 +38,27 @@ class UserAdmin extends Component {
     }
 
 
+    listClickHandler = (index) => {
+        console.log(index);
+    }
+
     render() {
         return(
             <div className="wrapper-admin">
-                <GameList 
-                    games={this.state.games} 
-                    firstTeam={this.state.games.gameOne}
-                    secondTeam={this.state.games.gameTwo}
-                    key={this.state.games.id}
-                    />    
                 <GameElement 
                     teamOne={this.state.gameOne}
                     teamTwo={this.state.gameTwo}
                     teamOneChange={this.teamOneHandler}
                     teamTwoChange={this.teamTwoHandler}
                     />
+                <br />
+                <GameList 
+                    games={this.state.games} 
+                    firstTeam={this.state.games.gameOne}
+                    secondTeam={this.state.games.gameTwo}
+                    key={this.state.games.id}
+                    clicked={this.listClickHandler}
+                    />    
                 <Button onClick={this.generateGamesHandler}>Gerate Games</Button>
             </div>
         );

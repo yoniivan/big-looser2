@@ -2,11 +2,12 @@ import React from 'react';
 import GameFromList from './GameFromList';
 
 const GameList = (props) => props.games.map((team, index) => {
-    console.log('GameList CALL')
+    console.log(team)
     return <GameFromList 
-                firstTeam={team.teamOne}
-                secondTeam={team.teamTwo}
+                firstTeam={team.gameOne}
+                secondTeam={team.gameTwo}
                 key={index}
+                click={() => props.clicked(index)}
             />
 });
             
