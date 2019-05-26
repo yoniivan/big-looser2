@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './Login.css';
 import { Card, Button, FormControl, InputGroup } from 'react-bootstrap';
+import { Link, Router } from 'react-router-dom';
 
 class Login extends Component {
     
     state = {
         email: "",
         Password: "",
+        isLogin: false,
     }
 
     emailHandler = (e) => {
@@ -15,6 +17,7 @@ class Login extends Component {
 
     loginHandler = () => {
         console.log(this.state)
+        return <Router><Link to="/userAdmin"></Link></Router>
     }
 
     render() {

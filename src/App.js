@@ -27,7 +27,7 @@ class App extends Component {
   if ('/register' === location.pathname) {
       loginRoute.body.backgroundColor = "#401d68",
       loginRoute.html.backgroundColor = "#401d68"
-      } 
+      }    
 
     return (
       <div style={loginRoute.html}>

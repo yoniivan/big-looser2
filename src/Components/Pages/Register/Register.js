@@ -47,7 +47,7 @@ class Register extends Component {
             <div className="wrapper-register">
                 <Card className="card-register">
                     <div className="btn-form">
-                    <Card.Title className="card-title">Log in to youraccount</Card.Title>
+                    <Card.Title className="card-title">Register</Card.Title>
                     <InputGroup className="mb-3">
                         <FormControl
                             placeholder="First name"
@@ -100,10 +100,10 @@ class Register extends Component {
                             onClick={this.registerHandler}
                             >Log In</Button>
                     </div>
-                    <Card.Footer className="text-muted">New to BigLooser? <strong>Sign Up</strong></Card.Footer> 
+                    <Card.Footer className="text-muted">Have a account ? <strong>Sign Up</strong></Card.Footer> 
                 </Card>
             </div>
-        
+
         );
 
     }

@@ -10,7 +10,7 @@ const NavigationBar = () => {
         <Navbar.Brand href="#home">BigLooser</Navbar.Brand>
             <Nav className="mr-auto">
             <Nav.Link href="/welcome">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="/userAdmin">userAdmin</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav>
         <Form inline>
