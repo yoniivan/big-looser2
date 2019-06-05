@@ -6,22 +6,32 @@ import './gameElement.css';
 const GameElement = (props) => {
     return(
         <Card className="wrapper-game-elm">
-            <FormControl
+            <table className="table">
+            <tbody>
+                <tr>
+                <td><FormControl
                 placeholder="Team1"
                 aria-label="text"
                 aria-describedby="basic-addon1"
                 value={props.teamOne}
                 onChange={props.teamOneChange}
                 
-                />
-            <h3>VS</h3>
-            <FormControl
+                /></td>
+                <td><h3>VS</h3></td>
+                <td><FormControl
                 placeholder="Team2"
                 aria-label="text"
                 aria-describedby="basic-addon1"
                 value={props.teamTwo}
                 onChange={props.teamTwoChange}
-                />     
+                /> </td>
+                </tr>
+            </tbody>
+            </table>
+                
+            
+            
+                
         </Card>
     );
 }

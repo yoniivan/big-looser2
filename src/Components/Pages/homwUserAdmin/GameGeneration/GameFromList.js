@@ -1,16 +1,21 @@
 import React from 'react';
 import './gameFromList.css';
-import { Card } from 'react-bootstrap';
+import { Card, table } from 'react-bootstrap';
 
 
 const GameFromList = (props) => {
     return(
             <Card>
-                <div className="wrapper-list-game" onClick={props.click}>
-                    <p>{props.firstTeam}</p>
-                    <p>VS</p>
-                    <p>{props.secondTeam}</p>
-                </div>
+                <table>
+                <tbody>
+                    <tr>
+                    <th scope="row">1</th>
+                    <td>{props.firstTeam}</td>
+                    <td>VS</td>
+                    <td>{props.secondTeam}</td>
+                    </tr>
+                </tbody>
+                </table>
             </Card>
         
     )

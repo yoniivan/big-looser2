@@ -1,13 +1,5 @@
-.wrapper-login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 30px;
-}
-
 .card-login {
-  width: 25%;
-  padding: 0;
+  width: 20vw;
 }
 
 .btn-form {
@@ -17,7 +9,8 @@
 
 .login-btn {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
+  background-color: #61147a;
 }
 
 .card-title {

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import './userAdmin.css';
-import { Card, Button, FormControl } from 'react-bootstrap';
-import GameList from './GameGeneration/listGame';
-import GameElement from '../homwUserAdmin/GameGeneration/gameElement';
+import { Card, Button, table } from 'react-bootstrap';
+import GameList from '../GameGeneration/listGame';
+import GameElement from '../GameGeneration/gameElement';
 
-class UserAdmin extends Component {
+class InserGames extends Component {
 
     state = {
-        games: [
-            {id: '0', gameOne: 'test1', gameTwo: 'test1'}
-        ],
+        games: [],
         id: '',
         gameOne: '',
         gameTwo: '',
@@ -19,7 +16,8 @@ class UserAdmin extends Component {
         console.log(this.state.length);
         let id = this.state.games.length + 1;
         console.log(id);
-        let games = [...this.state.games]
+        let games = [...this.state.games];
+        // let games = [...this.state.games],
         games.push({
             id: id,
             gameOne: this.state.gameOne,
@@ -51,7 +49,18 @@ class UserAdmin extends Component {
                     teamOneChange={this.teamOneHandler}
                     teamTwoChange={this.teamTwoHandler}
                     />
-                <br />
+                <Card>
+                <table className="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First team</th>
+                    <th scope="col">VS</th>
+                    <th scope="col">Second team</th>
+                    </tr>
+                </thead>
+                </table>
+                </Card>
                 <GameList 
                     games={this.state.games} 
                     firstTeam={this.state.games.gameOne}
@@ -65,4 +74,4 @@ class UserAdmin extends Component {
     }
 }
 
-export default UserAdmin;
+export default InserGames;

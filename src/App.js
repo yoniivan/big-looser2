@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import AppRoutes from './Components/Routes';
+import AppRoutes from './Components/Utils/Routes';
 import NavigationBar from './Components/Navidation/NavigationBar';
 //import Footer from './Components/Footer';
 
@@ -27,7 +27,7 @@ class App extends Component {
   if ('/register' === location.pathname) {
       loginRoute.body.backgroundColor = "#401d68",
       loginRoute.html.backgroundColor = "#401d68"
-      }    
+      }   
 
     return (
       <div style={loginRoute.html}>

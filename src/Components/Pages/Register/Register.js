@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import './Register.css';
-import axios from '../../../axios-users';
-import { Card, Button, FormControl, InputGroup } from 'react-bootstrap';
+import axios from '../../Utils/axios-users';
+import { Card, Button } from 'react-bootstrap';
+import Forms from './formRegister';
 
 class Register extends Component {
     
     state = {
         firstName: "",
         lastName: "",
-        email: "",
-        Password: "",
+        eMail: "",
+        password: "",
         cPassword: "",
     }
 
     nameHandler = (e) => {
         this.setState({firstName: e.target.value})
+        console.log(e.target.value)
     }
 
     lastHandler = (e) => {
@@ -22,11 +24,11 @@ class Register extends Component {
     }
 
     emailHandler = (e) => {
-        this.setState({email: e.target.value})
+        this.setState({eMail: e.target.value})
     }
 
     passwordHandler = (e) => {
-        this.setState({Password: e.target.value})
+        this.setState({password: e.target.value})
     }
 
     confirmHandler = (e) => {
@@ -34,9 +36,14 @@ class Register extends Component {
     }
 
     registerHandler = () => {
-        const payload = this.state
+        const payload = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            eMail: this.state.eMail,
+            password: this.state.password
+        }
         
-        axios.post('./users.json', payload).then(registered => {
+        axios.post('./register', payload).then(registered => {
             console.log(registered);
         });
         console.log(this.state)
@@ -48,62 +55,29 @@ class Register extends Component {
                 <Card className="card-register">
                     <div className="btn-form">
                     <Card.Title className="card-title">Register</Card.Title>
-                    <InputGroup className="mb-3">
-                        <FormControl
-                            placeholder="First name"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value={this.state.firstName}
-                            onChange={this.nameHandler}
-                            />
-                        </InputGroup>
-                        <InputGroup className="mb-3">
-                        <FormControl
-                            placeholder="Last name"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value={this.state.lastName}
-                            onChange={this.lastHandler}
-                            />
-                        </InputGroup>
-                        <InputGroup className="mb-3">
-                        <FormControl
-                            placeholder="Email"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value={this.state.email}
-                            onChange={this.emailHandler}
-                            />
-                        </InputGroup>
-                        <InputGroup className="mb-3">
-                        <FormControl
-                            placeholder="Password"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value={this.state.Password}
-                            onChange={this.passwordHandler}
-                            />
-                        </InputGroup>
-                        <InputGroup className="mb-3">
-                        <FormControl
-                            placeholder="Confirm password"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            value={this.state.cPassword}
-                            onChange={this.confirmHandler}
-                            />
-                        </InputGroup>
-                        <Button 
-                            variant="primary" 
-                            className="register-btn" 
-                            type="submit"
-                            onClick={this.registerHandler}
-                            >Log In</Button>
+                    <Forms 
+                        firstName={this.state.firstName}
+                        nameChange={this.nameHandler}
+                        lastName={this.state.lastName}
+                        lnChange={this.lastHandler}
+                        email={this.state.eMail}
+                        emailChange={this.emailHandler}
+                        password={this.state.password}
+                        passwordChange={this.passwordHandler}
+                        cPassword={this.state.cPassword}
+                        cPasswordChange={this.confirmHandler}
+                    />
+                    <Button 
+                        variant="primary" 
+                        className="register-btn" 
+                        type="submit"
+                        onClick={this.registerHandler}
+                        >Log In
+                    </Button>
                     </div>
                     <Card.Footer className="text-muted">Have a account ? <strong>Sign Up</strong></Card.Footer> 
                 </Card>
             </div>
-
         );
 
     }

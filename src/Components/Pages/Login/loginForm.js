@@ -1,29 +1,12 @@
-import React, { Component } from 'react';
-import './Login.css';
+import React from 'react';
 import { Card, Button, FormControl, InputGroup } from 'react-bootstrap';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './loginForm.css'
 
-class Login extends Component {
-    
-    state = {
-        email: "",
-        Password: "",
-        isLogin: false,
-    }
-
-    emailHandler = (e) => {
-        this.setState({email: e.target.value})
-    }
-
-    loginHandler = () => {
-        console.log(this.state)
-        return <Router><Link to="/userAdmin"></Link></Router>
-    }
-
-    render() {
-        return(
-            <div className="wrapper-login">
-                <Card className="card-login">
+const LoginForm = (props) => {
+    return(
+        <div>
+            <Card className="card-login">
                     <div className="btn-form">
                     <Card.Title className="card-title">Log in to youraccount</Card.Title>
                     <InputGroup className="mb-3">
@@ -34,8 +17,8 @@ class Login extends Component {
                             placeholder="Email address"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
-                            value={this.state.email}
-                            onChange={this.emailHandler}
+                            value={props.email}
+                            onChange={props.emailChange}
                             />
                         </InputGroup>
                         <InputGroup className="mb-3">
@@ -46,24 +29,21 @@ class Login extends Component {
                             placeholder="Password"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
+                            value={props.password}
+                            onChange={props.passwordChange}
                             />
                         </InputGroup>
                         <Button 
                             variant="primary" 
                             className="login-btn" 
                             type="submit"
-                            onClick={this.loginHandler}
+                            onClick={props.click}
                             >Log In</Button>
                     </div>
-                    <Card.Footer className="text-muted">New to BigLooser? <strong>Sign Up</strong></Card.Footer> 
-                </Card>
-            </div>
-        
-        );
-
-    }
-    
-
+                    <Card.Footer className="text-muted">New to BigLooser? <Link to="/register"><strong>Sign Up</strong></Link></Card.Footer> 
+                </Card>    
+        </div>
+    );
 }
 
-export default Login
+export default LoginForm;
