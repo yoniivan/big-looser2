@@ -1,0 +1,17 @@
+.wrapper {
+}
+
+.mb-3-search {
+  width: 40%;
+}
+
+.input_btn {
+  display: flex;
+}
+
+.searchBtn {
+  margin: 20px;
+}
+.searchInput {
+  margin-top: 15px;
+}

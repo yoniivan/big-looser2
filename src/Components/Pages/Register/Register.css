@@ -7,11 +7,9 @@
 
 .card-register {
   width: 30%;
-  padding: 25px;
 }
 
-.btn-register {
-  width: 100%;
+.register-btn {
   margin-bottom: 50px;
 }
 
@@ -19,5 +17,14 @@ form.Group {
   padding: 100px;
 }
 
-p {
+.button-checkbox {
+  display: flex;
+}
+
+.form-group {
+  padding-left: 15px;
+}
+
+.mb-3 {
+  padding: 5px;
 }

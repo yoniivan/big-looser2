@@ -1,6 +1,9 @@
 import React from 'react';
 import { FormControl, Card } from 'react-bootstrap';
 import './gameElement.css';
+import DatePicker from "react-datepicker";
+ 
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const GameElement = (props) => {
@@ -25,13 +28,20 @@ const GameElement = (props) => {
                 value={props.teamTwo}
                 onChange={props.teamTwoChange}
                 /> </td>
+                <td>
+                <DatePicker className="dateTimePicker"
+                    selected={props.startDate}
+                    onChange={props.dateChange}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    timeCaption="time"
+                />
+                </td>
                 </tr>
             </tbody>
-            </table>
-                
-            
-            
-                
+            </table>  
         </Card>
     );
 }

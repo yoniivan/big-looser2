@@ -12,6 +12,7 @@ class Register extends Component {
         eMail: "",
         password: "",
         cPassword: "",
+        isAdmin: false,
     }
 
     nameHandler = (e) => {
@@ -35,12 +36,17 @@ class Register extends Component {
         this.setState({cPassword: e.target.value})
     }
 
+    checkboxHandler = (e) => {
+        this.setState({isAdmin: !this.state.isAdmin});
+    }
+
     registerHandler = () => {
         const payload = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             eMail: this.state.eMail,
-            password: this.state.password
+            password: this.state.password,
+            isAdmin: this.state.isAdmin,
         }
         
         axios.post('./register', payload).then(registered => {
@@ -67,13 +73,27 @@ class Register extends Component {
                         cPassword={this.state.cPassword}
                         cPasswordChange={this.confirmHandler}
                     />
-                    <Button 
-                        variant="primary" 
-                        className="register-btn" 
-                        type="submit"
-                        onClick={this.registerHandler}
-                        >Log In
-                    </Button>
+                    <div className="button-checkbox">
+                        <Button 
+                            variant="primary" 
+                            className="register-btn" 
+                            type="submit"
+                            onClick={this.registerHandler}
+                            >Log In
+                        </Button>
+                        <div className="form-group">
+                            <div className="form-check">
+                                <input 
+                                    className="form-check-input" 
+                                    type="checkbox"
+                                    onChange={this.checkboxHandler}/>
+                                    
+                                <label 
+                                    className="from-check-label">Admin user</label>
+                            </div>
+                        </div>
+                    </div>
+                    
                     </div>
                     <Card.Footer className="text-muted">Have a account ? <strong>Sign Up</strong></Card.Footer> 
                 </Card>

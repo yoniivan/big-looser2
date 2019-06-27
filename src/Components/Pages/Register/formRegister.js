@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormControl, InputGroup } from 'react-bootstrap';
+import './Register.css';
 
 const Forms = (props) => {
     return(

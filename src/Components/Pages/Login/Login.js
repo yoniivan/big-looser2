@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import './Login.css';
-//import AdminMainPage from '../homwUserAdmin/MainPage/adminMainPage';
+import { connect } from 'react-redux';
 import LoginForm from './loginForm';
 import axios from '../../Utils/axios-users';
 import setAuthorizationToken from '../../Utils/setAuthorizationToken';
+import jwt_decode from 'jwt-decode';
+import * as actionTypes from '../../Store/Actions';
 
 
 class Login extends Component {
     
     state = {
-        email: "",
+        email: "alon@gmail.com",
         password: "",
         isLogin: false,
     }
@@ -34,8 +36,29 @@ class Login extends Component {
             }else{
                 localStorage.setItem('token', dataLogin.data.token);
                 setAuthorizationToken(dataLogin.data.token);
-                //console.log(jwt.decode(dataLogin.data.token));
-                this.props.history.push('/admin');
+                if (dataLogin.data.token) {
+                    const decode = jwt_decode(dataLogin.data.token);
+                    const userParams = {
+                        token: dataLogin.data.token,
+                        id: decode._id,
+                        email: decode.eMail,
+                        firstName: decode.firstName,
+                        lastName: decode.lastName,
+                        isAdmin: decode.isAdmin,
+                        groupName: decode.groupName,
+                    }
+                    this.props.saveUserParams(userParams);
+                    this.setState({ isLogin: true });
+                    if (userParams.isAdmin){
+                        this.props.history.push('/admin');
+                    }else{
+                        this.props.history.push('/user');
+                    }
+                }
+                else{
+                    // Need to handle in UI
+                    console.log("No token");
+                }
             }
         });
     }
@@ -50,7 +73,6 @@ class Login extends Component {
                     passwordChange={this.passwordHandler}
                     click={this.loginHandler}
                 />
-                
             </div>
         
         );
@@ -58,4 +80,16 @@ class Login extends Component {
     }
 }
 
-export default Login
+// const mapStateToProps = state => {
+//     return {
+//         tokenRedux: state.token,
+//     };
+// }
+
+const mapDispachToProps = dispatch => {
+    return {   
+        saveUserParams: (userParams) => dispatch({type: actionTypes.SAVE_USER_PARAMS, userParams})
+    };
+};
+
+export default connect(null, mapDispachToProps)(Login)

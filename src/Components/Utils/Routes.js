@@ -1,50 +1,45 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Login from '../Pages/Login/Login';
-import Welcome from '../Pages/Welcome';
+import Welcome from '../Pages/Welcome/Welcome';
 import Register from '../Pages/Register/Register';
 import AdminMainPage from '../Pages/homwUserAdmin/MainPage/adminMainPage';
-import InserGames from '../Pages/homwUserAdmin/InsertNewGames/insertGames'
+import mainPage_simple from '../Pages/SimpleUser/MainPage/mainPage_simple';
+// import NoMatch from '../Pages/NoMatch/noMatch';
 
+class AppRoutes extends Component {
 
-const AppRoutes = () => {
-    return(
-      <BrowserRouter>
-        <Route exact path="/" component={Welcome} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
+  
+  render(){
+      // const token = localStorage.getItem('token');
+      // let admin;
+      // if (token) {
+      //   admin = <Route path="/admin" component={AdminMainPage} />;
+      // }
+      return(
+        <BrowserRouter>
+           <Switch>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route path="/admin" component={AdminMainPage} />
+            <Route path="/user" component={mainPage_simple} />
+            {/* <Route component={NoMatch} /> */}
+          </Switch>
+        </BrowserRouter>
+      );
+    }
+  }
 
-  <Route
-    path="/admin"
-    render={({ match: { url } }) => (
-      <React.Fragment>
-        <Route path={`${url}/`} component={AdminMainPage} exact />
-      </React.Fragment>
-    )}
-  />
-
-</BrowserRouter>
-    );
+const mapStateToProps = state => {
+    return {
+        token: state.token,
+    };
 }
 
+const mapDispachToProps = dispatch => {
+  return {};
+};
 
-export default AppRoutes;
-
-
-
-
-// const AppRoutes = () => {
-//   return(
-//     <BrowserRouter>
-//         <Switch>
-//           <Route exact path="/" component={Welcome} />
-//           <Route path="/register" component={Register} />
-//           <Route path="/login" component={Login} />
-//           <Route path="/admin" component={AdminMainPage} />
-//         </Switch>
-//     </BrowserRouter>
-//   );
-// }
-
-
-// export default AppRoutes;
+export default connect(mapStateToProps, mapDispachToProps)(AppRoutes);

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import jwt_decode from 'jwt-decode';
-import './adminMainPage.css';
-import InserGames from '../GameGeneration/InsertNewGames/insertGames';
-import Users from '../Users/Users';
-import AdminWelcomePage from '../AdminWelcomePage/AdminWelcomePage';
+import './mainPage_simple.css';
 import * as actionTypes from '../../../Store/Actions';
-import Standings from '../../SimpleUser/Standings/standings';
-import ViewGames_simple from '../../SimpleUser/ViewGames/viewGames';
+import ViewGames_simple from '../ViewGames/viewGames';
+import UserWelcome from '../UserWelcomePage/userWelcome';
+import { Card } from 'react-bootstrap';
+import Standings from '../Standings/standings';
 
 
-class AdminMainPage extends Component {
+class MainPage_simple extends Component {
 
     componentDidMount() {
         const tokenLocal = localStorage.getItem('token')
@@ -33,53 +32,38 @@ class AdminMainPage extends Component {
     }
 
     state = {
-        pageActive: 'adminPage',
-
+        pageActive: '',
     }
 
-    adminHandler = () => {
-        this.setState({pageActive: 'adminPage'})
+    userHandler = () => {
+        this.setState({pageActive: 'userPage'})
     }
 
-    insertHandler = () => {
-        this.setState({pageActive: 'insertPage'});
-    }
-
-    userHanler = () => {
-        this.setState({pageActive: 'usersPage'});
+    viewGamesHandler = () => {
+        this.setState({pageActive: 'viewGamesPage'});
     }
 
     standingsHandler = () => {
-        this.setState({pageActive: 'standingsPage'});
-    }
-
-    viewGamesBetHandler = () => {
-        this.setState({pageActive: 'viewBetGamesPage'});
+        this.setState({pageActive: 'standingPage'});
     }
     
     render() {
         
-        let page = null;
+        let page = <h1>Simple User</h1>;
 
         switch(this.state.pageActive) {
-            case 'usersPage':
-                page = <Users />
-                break;
-            case 'insertPage':
-                page = <InserGames />
-                break;
-            case 'adminPage':
-                page = <AdminWelcomePage />
-                break; 
-            case 'viewBetGamesPage':
+            case 'viewGamesPage':
                 page = <ViewGames_simple />
-                break;    
-            case 'standingsPage':
-                page = <Standings />
-                break;     
+                break;
+            case 'userPage':
+                page = <UserWelcome />
+                break; 
+            case 'standingPage':
+                page = <Standings />            
+                break;        
             default:
-                page = <AdminWelcomePage />            
-        }
+                page = <UserWelcome />
+                }
         
         return(
             
@@ -88,10 +72,8 @@ class AdminMainPage extends Component {
                 {/* SideBar */}
                 <div className="sidebar-wrapper">
                     <ul className="sidebar-nav">
-                        <li><a onClick={this.adminHandler}>Admin mane page</a></li>
-                        <li><a onClick={this.userHanler}>View all users</a></li>
-                        <li><a onClick={this.insertHandler}>Insert gmaes</a></li>
-                        <li><a onClick={this.viewGamesBetHandler}>Bet on games</a></li>
+                        <li><a onClick={this.userHandler}>Admin mane page</a></li>
+                        <li><a onClick={this.viewGamesHandler}>View all Games</a></li>
                         <li><a onClick={this.standingsHandler}>Standings</a></li>
                     </ul>
                 </div>
@@ -106,7 +88,6 @@ class AdminMainPage extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }
@@ -122,4 +103,4 @@ const mapDispachToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispachToProps)(AdminMainPage);
+export default connect(mapStateToProps, mapDispachToProps)(MainPage_simple);

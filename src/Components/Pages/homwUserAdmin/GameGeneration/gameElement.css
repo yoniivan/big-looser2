@@ -1,3 +1,8 @@
 .wrapper-game-elm {
   display: flex;
 }
+
+.dateTimePicker {
+  padding: 5px;
+  text-align: center;
+}
