@@ -7,12 +7,15 @@ import Users from '../Users/Users';
 import AdminWelcomePage from '../AdminWelcomePage/AdminWelcomePage';
 import * as actionTypes from '../../../Store/Actions';
 import Standings from '../../SimpleUser/Standings/standings';
-import ViewGames_simple from '../../SimpleUser/ViewGames/viewGames';
+import ViewGamesSimple from '../../SimpleUser/ViewGames/viewGames';
+import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
+
 
 
 class AdminMainPage extends Component {
 
     componentDidMount() {
+        console.log('[AdminMainPage]');
         const tokenLocal = localStorage.getItem('token')
         if (tokenLocal){
             const decode = jwt_decode(tokenLocal);
@@ -37,24 +40,44 @@ class AdminMainPage extends Component {
 
     }
 
+    setPage = (page) => {
+        if(!checkExpireToken())
+            this.setState({pageActive: page})
+        else{
+            logOut();    
+            this.props.switchPage('/', 'Login');
+            this.props.history.push('/');
+        }
+    }
+
     adminHandler = () => {
-        this.setState({pageActive: 'adminPage'})
+        this.setPage('adminPage');
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
     }
 
     insertHandler = () => {
-        this.setState({pageActive: 'insertPage'});
+        this.setPage('insertPage');
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small'); 
     }
 
     userHanler = () => {
-        this.setState({pageActive: 'usersPage'});
+        this.setPage('usersPage'); 
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
     }
 
     standingsHandler = () => {
-        this.setState({pageActive: 'standingsPage'});
+        this.setPage('standingsPage'); 
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
     }
 
     viewGamesBetHandler = () => {
-        this.setState({pageActive: 'viewBetGamesPage'});
+        this.setPage('viewBetGamesPage'); 
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
     }
     
     render() {
@@ -72,7 +95,7 @@ class AdminMainPage extends Component {
                 page = <AdminWelcomePage />
                 break; 
             case 'viewBetGamesPage':
-                page = <ViewGames_simple />
+                page = <ViewGamesSimple />
                 break;    
             case 'standingsPage':
                 page = <Standings />
@@ -80,14 +103,12 @@ class AdminMainPage extends Component {
             default:
                 page = <AdminWelcomePage />            
         }
-        
-        return(
-            
+        return( 
             <div className="wrapper">
-
                 {/* SideBar */}
-                <div className="sidebar-wrapper">
+                <div className={this.props.sidebarToggle}>
                     <ul className="sidebar-nav">
+                        
                         <li><a onClick={this.adminHandler}>Admin mane page</a></li>
                         <li><a onClick={this.userHanler}>View all users</a></li>
                         <li><a onClick={this.insertHandler}>Insert gmaes</a></li>
@@ -95,9 +116,8 @@ class AdminMainPage extends Component {
                         <li><a onClick={this.standingsHandler}>Standings</a></li>
                     </ul>
                 </div>
-
                 {/* Content */}
-                <div className="page-content-wrapper">
+                <div className={this.props.pageShift}>
                     <div className="cotainer-fluid">
                         <div className="row">
                             <div className="col-lg-12">
@@ -113,12 +133,17 @@ class AdminMainPage extends Component {
 }
 
 const mapStateToProps = state => {
-    return {};
+    return {
+        sidebarToggle: state.sidebarToggle,
+        pageShift: state.pageShift,
+    };
 }
 
 const mapDispachToProps = dispatch => {
   return {
-        saveUserParams: (userParams) => dispatch({type: actionTypes.SAVE_USER_PARAMS, userParams})
+        saveUserParams: (userParams) => dispatch({type: actionTypes.SAVE_USER_PARAMS, userParams}),
+        switchPage: (page, pageTitle) => dispatch({type: actionTypes.REGISTER_LOGIN_PAGE, page, pageTitle}),
+        sideBarState: (toggle, page) => dispatch({type: actionTypes.SIDEBAR_TOGGLE, toggle, page}),
   }
 };
 

@@ -13,9 +13,17 @@ import '../../../stylingCommon.css';
 class InserGames extends Component {
 
     state = {
-        gameOne: '',
-        gameTwo: '',
-        nodeDate: new Date(),
+        gameOne: {
+            value: '',
+            message: '',
+            required: false,
+        },
+        gameTwo: {
+            value: '',
+            message: '',
+            required: false,
+        },
+        nodeDate: '',
         reduxDate : '',
 
         endResultFirst: -1,
@@ -29,15 +37,10 @@ class InserGames extends Component {
         this.setState({reduxDate: date});
 
         axios.get('/gameinsert').then(data => {
-            console.log(data);
-            if(data.status == 200){
-                console.log('[node]: ' + data.data.arr.length + ' [redux]: ' + this.props.games.length);
-                if(data.data.arr.length != this.props.games.length) {
+            if(data.status === 200){
+                if(data.data.arr.length !== this.props.games.length) {
                     const payload = data.data.arr;
-                    console.log(payload);
-                    let d = (this.state.nodeDate).toJSON().split('T');
-                    const date = d[0] + ' ' + d[1].split(".")[0];
-                    payload.map(d => {
+                    payload.forEach(d => {
                         const games = {
                             gameId: d._id,
                             teamOne: d.firstTeam,
@@ -56,44 +59,48 @@ class InserGames extends Component {
     }
     generateGamesHandler = () => {
         console.log('[generateGamesHandler]')
+        this.insertGameValidation().then(valid => {
+            console.log(this.state);
+        });
         if (this.state.gameOne !== '' && this.state.gameTwo !== '') {
 
             const games = {
-                teamOne: this.state.gameOne,
-                teamTwo: this.state.gameTwo,
+                teamOne: this.state.gameOne.value,
+                teamTwo: this.state.gameTwo.value,
                 nodeDate: this.state.nodeDate,
                 reduxDate: this.state.reduxDate,
             }
 
             const payload = {
-                teamOne: this.state.gameOne,
-                teamTwo: this.state.gameTwo,
+                teamOne: this.state.gameOne.value,
+                teamTwo: this.state.gameTwo.value,
                 nodeDate: this.state.nodeDate,
                 groupName: this.props.groupName,
             }
 
-            console.log(payload);
-            axios.post('/gameinsert', payload).then(data => {
-                console.log('[INSERT_GSMES]' + data);
-            })
+            // console.log(payload);
+            // axios.post('/gameinsert', payload).then(data => {
+            //     console.log('[INSERT_GSMES]' + data);
+            // })
 
-            this.props.saveGames(games);
+            // this.props.saveGames(games);
           
                 
             // console.log(this.props.games[0]);
             
 
-            this.setState({ gameOne: '' });
-            this.setState({ gameTwo: '' });
+            // this.setState({ gameOne: '' });
+            // this.setState({ gameTwo: '' });
         }
     }
     
     teamOneHandler = (e) => {
-        this.setState({gameOne: e.target.value});
+        this.setState({gameOne: {...this.state.gameOne, value: e.target.value, required: true, message: ''}});
     }
 
     teamTwoHandler = (e) => {
-        this.setState({gameTwo: e.target.value})
+        this.setState({gameTwo: {...this.state.gameTwo, value: e.target.value, required: true, message: ''}});
+
     }
 
     deleteHandler = (index) => {
@@ -103,10 +110,25 @@ class InserGames extends Component {
         }
         axios.put('/gameinsert', payload).then(data => {
             console.log(data.status)
-            if(data.status == 201){
+            if(data.status === 201){
                 this.props.removeGame(index); 
             }
         });
+    }
+
+    setStateAsync = async(state) => {
+        return new Promise((resolve) => {
+            this.setState(state, resolve)
+        });
+    }
+
+    insertGameValidation = async() => {
+        if(this.state.gameOne.value === '')
+            await this.setStateAsync({gameOne: {...this.state.gameOne, message: 'Please enter gmaeOne.', required: false}});
+
+        if(this.state.gameTwo.value === '')
+            await this.setStateAsync({gameTwo: {...this.state.gameTwo, message: 'Please enter gameTwo.', required: false}});
+        
     }
 
     updateHandler = (index) => {
@@ -124,9 +146,9 @@ class InserGames extends Component {
             secondTeam: this.props.games[index].teamTwo,
         }
         console.log(payload);
-        axios.put('/gameinsert', payload).then(data => {
+        // axios.put('/gameinsert', payload).then(data => {
 
-        });
+        // });
         // this.props.saveGames(index, games);
     }
 
@@ -139,8 +161,7 @@ class InserGames extends Component {
         this.setState({endResultSecond: value});
     }
 
-    dateChangeHandler = (e) => {
-        
+    dateChangeHandler = (e) => {  
         this.setState({nodeDate: e.getTime()});
         const date = new Date(e.getTime());
         const arrDate = date.toString().split(' ');
@@ -149,6 +170,17 @@ class InserGames extends Component {
     }
 
     render() {
+
+        let validOne = "hideErrorMessageInsert";
+        let validTwo = "hideErrorMessageInsert";
+
+        if(this.state.gameOne.message !== "")
+            validOne = "showErrorMessageInsert"
+
+        if(this.state.gameTwo.message !== "")
+            validTwo = "showErrorMessageInsert"
+
+
         let gameTable = null
         if (this.props.games.length > 0){
             gameTable =  (
@@ -170,12 +202,17 @@ class InserGames extends Component {
             <div className="wrapper-admin">
                 <Card className="title"><h1>Inser games</h1></Card>
                 <GameElement className="gameElement"
-                    teamOne={this.state.gameOne}
-                    teamTwo={this.state.gameTwo}
+                    teamOne={this.state.gameOne.value}
+                    teamTwo={this.state.gameTwo.value}
                     teamOneChange={this.teamOneHandler}
                     teamTwoChange={this.teamTwoHandler}
                     startDate={this.state.nodeDate}
                     dateChange={this.dateChangeHandler}
+
+                    teamOneErrorMessage={this.state.gameOne.message}
+                    teamTwoErrorMessage={this.state.gameTwo.message}
+                    showOneValid={validOne}
+                    showTwoValid={validTwo}
                     />
                 <Card>
                 </Card>

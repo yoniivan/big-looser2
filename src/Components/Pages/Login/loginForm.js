@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, Button, FormControl, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 import './loginForm.css'
+import { IoIosMail, IoIosUnlock } from 'react-icons/io';
 
 const LoginForm = (props) => {
     return(
@@ -9,9 +11,13 @@ const LoginForm = (props) => {
             <Card className="card-login">
                     <div className="btn-form">
                     <Card.Title className="card-title">Log in to youraccount</Card.Title>
-                    <InputGroup className="mb-3">
+                    <span className={props.networkErrorSpan}>
+                        {props.errorNetworkMessage}
+                    </span>
+                    <div className="formInput">
+                    <InputGroup>
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1"><IoIosMail /></InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Email address"
@@ -21,9 +27,14 @@ const LoginForm = (props) => {
                             onChange={props.emailChange}
                             />
                         </InputGroup>
-                        <InputGroup className="mb-3">
+                        <span className={props.userNameShow}>
+                            {props.errorUserName}
+                        </span>
+                        </div>
+                        <div className="formInput">
+                        <InputGroup>
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">#</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1"><IoIosUnlock /></InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Password"
@@ -33,14 +44,24 @@ const LoginForm = (props) => {
                             onChange={props.passwordChange}
                             />
                         </InputGroup>
+                        <span className={props.passwordShow}>
+                            {props.errorPassword}
+                        </span>
+                        </div>
+                        <div className="btn-div">
                         <Button 
                             variant="primary" 
                             className="login-btn" 
                             type="submit"
                             onClick={props.click}
-                            >Log In</Button>
+                            >Log In</Button></div>
                     </div>
-                    <Card.Footer className="text-muted">New to BigLooser? <Link to="/register"><strong>Sign Up</strong></Link></Card.Footer> 
+                    <div className="footer-login">
+                    <Card.Footer className="text-muted">New to BigLooser? <Link
+                        to={props.href}
+                        onClick={(e) => props.signUp(e)}>
+                        Sign up 
+                    </Link></Card.Footer></div>
                 </Card>    
         </div>
     );

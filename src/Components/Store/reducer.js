@@ -1,6 +1,9 @@
 import * as actionTypes from './Actions';
 
 const initialState = {
+    page: 'login',
+    pageTitle: 'Login',
+
     token: null,
     userId: null,
     email: null,
@@ -11,6 +14,9 @@ const initialState = {
 
     games: [],
     users: [],
+
+    sidebarToggle: 'sidebar-wrapper-large',
+    pageShift: 'page-content-wrapper',
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,7 +47,6 @@ const reducer = (state = initialState, action) => {
                 }
 
         case actionTypes.UPDATE_END_RESULT:
-                console.log('[INDEX] = ' + action.index + ' [VALUE] = ' + action.game);
                 let allGames = [...this.games];
                 allGames[action.index] = action.game;
             return {
@@ -63,9 +68,37 @@ const reducer = (state = initialState, action) => {
                 games: gameRemoved,
                 } 
 
+        case actionTypes.REGISTER_LOGIN_PAGE:
+            return {
+                ...state,
+                page: action.page,
+                pageTitle: action.pageTitle,
+                }
+        case actionTypes.LOG_OUT:
+            return {
+                page: 'login',
+                pageTitle: 'Login',
+
+                token: null,
+                userId: null,
+                email: null,
+                firstName: null,
+                lastName: null,
+                isAdmin: null,
+                groupName: null,
+
+                games: [],
+                users: [],
+                } 
+        case actionTypes.SIDEBAR_TOGGLE:
+            return {
+                ...state,
+                sidebarToggle: action.toggle,
+                pageShift: action.page,
+                }
+
         default:
              return state;    
     }
 };
-
 export default reducer;

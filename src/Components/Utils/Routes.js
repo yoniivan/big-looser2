@@ -5,27 +5,24 @@ import Login from '../Pages/Login/Login';
 import Welcome from '../Pages/Welcome/Welcome';
 import Register from '../Pages/Register/Register';
 import AdminMainPage from '../Pages/homwUserAdmin/MainPage/adminMainPage';
-import mainPage_simple from '../Pages/SimpleUser/MainPage/mainPage_simple';
-// import NoMatch from '../Pages/NoMatch/noMatch';
+import mainPageSimple from '../Pages/SimpleUser/MainPage/mainPageSimple';
+import NoMatch from '../Pages/NoMatch/noMatch';
+import { ProtectedRoute } from './ProtectedRoute';
 
 class AppRoutes extends Component {
 
-  
   render(){
-      // const token = localStorage.getItem('token');
-      // let admin;
-      // if (token) {
-      //   admin = <Route path="/admin" component={AdminMainPage} />;
-      // }
+
       return(
         <BrowserRouter>
            <Switch>
-            <Route exact path="/" component={Welcome} />
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={Login} />
-            <Route path="/admin" component={AdminMainPage} />
-            <Route path="/user" component={mainPage_simple} />
-            {/* <Route component={NoMatch} /> */}
+              <Route exact path="/" component={Welcome} />
+              <Route path="/register" component={Register} />
+              <Route path="/login" component={Login} />
+              <Route path="/user" component={mainPageSimple} />
+              <ProtectedRoute exact path="/admin" component={AdminMainPage} />
+              <ProtectedRoute exact path="/user" component={mainPageSimple} />
+              <Route component={NoMatch} />
           </Switch>
         </BrowserRouter>
       );

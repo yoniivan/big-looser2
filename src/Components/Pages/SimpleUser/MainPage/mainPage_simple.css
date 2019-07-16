@@ -7,30 +7,12 @@ h1 {
   padding-left: 290px;
 }
 
-.sidebar-wrapper {
-  z-index: 1;
-  position: absolute;
-  width: 250px;
-  height: 100%;
-  overflow: hidden;
-  background: #2c3e50;
-  opacity: 0.9;
-}
-
 .page-content-wrapper {
   width: 100%;
   position: absolute;
   padding: 15px;
   padding-left: 270px;
 }
-
-/* .wrapper.menuDisplayed .sidebar-wrapper {
-    width: 250px;
-  }
-  
-  .wrapper.menuDisplayed .page-content-wrapper {
-    padding-left: 250px;
-  } */
 
 .sidebar-nav {
   padding: 0;

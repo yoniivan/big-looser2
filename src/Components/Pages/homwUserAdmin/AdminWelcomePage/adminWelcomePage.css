@@ -1,0 +1,26 @@
+.admin-welcome-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.admin-welcome-title {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.admin-welcome-body {
+  margin-top: 20px;
+}
+
+.form-group {
+  padding: 0px;
+}
+
+@media (max-width: 600px) {
+  .admin-welcome-title {
+    display: flex;
+    flex-direction: column;
+  }
+}

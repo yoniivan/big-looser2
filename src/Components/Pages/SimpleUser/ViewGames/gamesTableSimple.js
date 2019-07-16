@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
 
-const GamesTable_simple = (props) => {
+const GamesTableSimple = (props) => {
 
     const Games = props.games.map((game, index) => {
         return (
@@ -40,10 +40,10 @@ const GamesTable_simple = (props) => {
                 </td>
                 <td>
                 <DropdownButton id="dropdown-basic-button" title='Total goals'>
-                    <Dropdown.Item onClick={() => props.drop4('0-1', index)}>0-1</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.drop4('1-2', index)}>1-2</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.drop4('2-3', index)}>2-3</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.drop4('4+', index)}>4+</Dropdown.Item>
+                    <Dropdown.Item onClick={() => props.drop4('1', index)}>0-1</Dropdown.Item>
+                    <Dropdown.Item onClick={() => props.drop4('3', index)}>2-3</Dropdown.Item>
+                    <Dropdown.Item onClick={() => props.drop4('5', index)}>4-5</Dropdown.Item>
+                    <Dropdown.Item onClick={() => props.drop4('6', index)}>6+</Dropdown.Item>
                 </DropdownButton>
                 </td>
                 <td><Button 
@@ -66,4 +66,4 @@ const GamesTable_simple = (props) => {
     );
 }
 
-export default GamesTable_simple;
+export default GamesTableSimple;

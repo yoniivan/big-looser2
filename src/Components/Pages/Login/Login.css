@@ -1,6 +1,21 @@
 .wrapper-login {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 30px;
+}
+
+.logo {
+  width: 60%;
+  height: 60%;
+  margin: 30px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 30%;
+    height: 30%;
+    margin: 10px;
+  }
 }

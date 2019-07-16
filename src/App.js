@@ -3,15 +3,26 @@ import './App.css';
 import AppRoutes from './Components/Utils/Routes';
 import NavigationBar from './Components/Navidation/NavigationBar';
 import { connect } from 'react-redux';
+import * as actionTypes from './Components/Store/Actions';
+import { logOut } from './Components/Utils/setAuthorizationToken';
 
 class App extends Component {
 
-  componentDidMount() {
 
+
+  componentDidMount() {}
+
+  sidebarHandler = () => {
+    if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+      this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+ 
+    if(this.props.sidebarToggle === 'sidebar-wrapper-small')
+      this.props.sideBarState('sidebar-wrapper-large', 'page-content-wrapper-large');
   }
 
   render() {
-    
+
+
 
 
    let loginRoute = {
@@ -25,26 +36,43 @@ class App extends Component {
     }
   }
 
-    let login = 'Login';
-    let loginPath = '/login';
-    if ('/login' === location.pathname) {
-      loginRoute.body.backgroundColor = "#61147a";
-      loginRoute.html.backgroundColor = "#61147a";
-        login = 'Register'
-        loginPath = '/register'
-      }
-      if ('/register' === location.pathname) {
-        loginRoute.body.backgroundColor = "#401d68";
-        loginRoute.html.backgroundColor = "#401d68";
-        login = 'Login';
-        loginPath = '/login';
-      }
-      if (this.props.token) {
+    switch(location.pathname){
+      case '/login':
+          console.log('CASE - login');
+          loginRoute.body.backgroundColor = "#534292";
+          loginRoute.html.backgroundColor = "#534292";
+          break;
+      case '/register':
+          console.log('CASE - register');
+          loginRoute.body.backgroundColor = "#3a2778";
+          loginRoute.html.backgroundColor = "#3a2778";
+          this.props.switchPage('/login', 'Login');
+          break;
+      case '/':
+          console.log('CASE - /');
+          logOut();
+          break;
+      case '/admin':
+          console.log('CASE - admin');
+          this.props.switchPage('/', 'Log-out');
+          break;
+        case '/user':
+            console.log('CASE - user');
+            this.props.switchPage('/', 'Log-out');
+            break;  
+      default:
+        return '/';
+    }
+
+
+
+    if (this.props.token) {
         loginRoute.body.backgroundColor = '#f0f8ff';
         loginRoute.html.backgroundColor = '#f0f8ff';
-        login = 'Log-out';
-        loginPath = '/';
+        this.props.switchPage('/', 'Log-out');
       }
+      
+
       let firstName = this.props.firstName;
       let lastName = this.props.lastName;
       if (this.props.firstName != null && this.props.lastName != null) {
@@ -60,8 +88,10 @@ class App extends Component {
       <div style={loginRoute.html}>
         <div style={loginRoute.body}>
         <NavigationBar 
-          login={login}
-          loginPath={loginPath}
+          sidebar={this.sidebarHandler}
+          login={this.props.pageTitle}
+          loginPath={this.props.page}
+          signUpLink={this.props.page}
           name={this.props.firstName && this.props.lastName ? headerName : ''}
         />
           <AppRoutes />
@@ -77,11 +107,17 @@ const mapStateToProps = state => {
         firstName: state.firstName,
         lastName: state.lastName,
         token: state.token,
+        page: state.page,
+        pageTitle: state.pageTitle,
+        sidebarToggle: state.sidebarToggle,
+        pageShift: state.pageShift,
     };
 }
 
 const mapDispachToProps = dispatch => {
   return {
+    switchPage: (page, pageTitle) => dispatch({type: actionTypes.REGISTER_LOGIN_PAGE, page, pageTitle}),
+    sideBarState: (toggle, page) => dispatch({type: actionTypes.SIDEBAR_TOGGLE, toggle, page}),
   }
 };
 

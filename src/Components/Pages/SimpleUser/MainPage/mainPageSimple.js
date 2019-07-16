@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import jwt_decode from 'jwt-decode';
 import './mainPage_simple.css';
 import * as actionTypes from '../../../Store/Actions';
-import ViewGames_simple from '../ViewGames/viewGames';
+import ViewGamesSimple from '../ViewGames/viewGames';
 import UserWelcome from '../UserWelcomePage/userWelcome';
-import { Card } from 'react-bootstrap';
 import Standings from '../Standings/standings';
 
 
@@ -48,12 +47,10 @@ class MainPage_simple extends Component {
     }
     
     render() {
-        
         let page = <h1>Simple User</h1>;
-
         switch(this.state.pageActive) {
             case 'viewGamesPage':
-                page = <ViewGames_simple />
+                page = <ViewGamesSimple />
                 break;
             case 'userPage':
                 page = <UserWelcome />

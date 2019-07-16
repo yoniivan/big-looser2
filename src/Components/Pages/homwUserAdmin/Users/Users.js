@@ -10,9 +10,13 @@ import '../../stylingCommon.css';
 class Users extends Component{
 
     state ={
-        emailSeach: '',
+        // Validation
+        emailSeach: {
+            value: '',
+            required: true,
+            message: '',
+        },
 
-        
         id: '',
         eMail: '',
         firstName: '',
@@ -48,20 +52,12 @@ class Users extends Component{
             toggle: false,
         };
         axios.put('/users', payload).then(response => {
-            const objSave = {
-                id: response.data.id,
-                email: response.data.email,
-                firstName: response.data.firstName,
-                lastName: response.data.lastName,
-                groupName: response.data.groupName,
-                isAdmin: response.data.isAdmin,
-            }
             this.props.removeUser(index);
         });
     }
 
     addInputHandler = (e) => {
-        this.setState({emailSeach: e.target.value});
+        this.setState({emailSeach: {value: e.target.value, required: true, message: ''}});
     }
 
     AddButtonHandler = () => {
@@ -80,29 +76,49 @@ class Users extends Component{
                 groupName: response.data.groupName,
                 isAdmin: response.data.isAdmin,
             }
-            console.log(objSave);
             this.props.saveUsers(objSave)
         });
     }
 
     searchBtnHandler = () => {
         const search = {
-            email: this.state.emailSeach,
+            email: this.state.emailSeach.value,
+        }
+        console.log('Before if');
+        if(this.state.emailSeach.value === ''){
+           this.setState({emailSeach: {message: 'Please enter an Email.', required: false, value: ''}})
+           console.log('if');
+        }else{
+            console.log(search);
+            axios.post('/users', search).then(user => {
+                console.log(user);
+                if(user.status === 200){
+                    this.setState({
+                        id: user.data.id,
+                        eMail: user.data.email,
+                        firstName: user.data.firstName,
+                        lastName: user.data.lastName,
+                        groupName: user.data.groupName,
+                    });
+                }
+            }).catch(err => {
+                console.log(err.response.status);
+                if(err.response.status === 400)
+                    this.setState({emailSeach: {...this.state.emailSeach, message: err.response.data.message + '.'}});
+                else
+                    this.setState({emailSeach: {...this.state.emailSeach, message: 'Something went wrong.'}});
+                });
+                
         }
 
-        axios.post('/users', search).then(user => {
-            this.setState({
-                id: user.data.id,
-                eMail: user.data.email,
-                firstName: user.data.firstName,
-                lastName: user.data.lastName,
-                groupName: user.data.groupName,
-            });
-        })
     }
 
     render(){
 
+        let error = "hideErrorMessageUsers";
+        if(this.state.emailSeach.message !== '')
+            error = "showErrorMessageUsers";
+        
         const allUsers = (<table className="table">
                             <thead>
                                 <tr>
@@ -118,28 +134,35 @@ class Users extends Component{
                                 deleteRow={this.deleteHandler}
                             />
                         </table>)
-
+            
         return(
-            <div className="wrapper">
+            <div className="wrapper-users">
                 <Card className="title"><h1>View all users</h1></Card>
                 <Card>{allUsers}</Card>
                 <div>
                     <div className="input_btn">
-                    <InputGroup className="mb-3-search">
-                    <FormControl className="searchInput"
-                        placeholder="Last name"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                        value={this.state.emailSeach}
-                        onChange={this.addInputHandler}
-                        />
-                    </InputGroup>
-                    <Button className="searchBtn"
-                        onClick={() => this.searchBtnHandler()}
-                        type="submit"
-                        variant="primary">
-                        Search user
-                    </Button>
+                        <div className="search-div">
+                        <InputGroup className="mb-3-search">
+                        <FormControl className="searchInput"
+                            placeholder="Search for user"
+                            aria-label="Username"
+                            aria-describedby="basic-addon1"
+                            value={this.state.emailSeach.value}
+                            onChange={this.addInputHandler}
+                            />
+                        </InputGroup>
+                            <span className={error}>
+                              {this.state.emailSeach.message}
+                            </span>
+                        </div>
+                        <div>
+                            <Button className="searchBtn"
+                                onClick={() => this.searchBtnHandler()}
+                                type="submit"
+                                variant="primary">
+                                Search user
+                            </Button>
+                        </div>
                     </div>
                     <Card>
                     <table className="table">

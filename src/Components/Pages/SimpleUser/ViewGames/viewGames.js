@@ -1,38 +1,39 @@
 import React, { Component } from 'react';
 
 import axios from '../../../Utils/axios-users';
-import GamesTable_simple from './gamesTable_simple';
+import GamesTableSimple from './gamesTableSimple';
 import './viewGames.css';
 import { Card } from 'react-bootstrap';
 import '../../stylingCommon.css'
 
-class ViewGames_simple extends Component {
+class ViewGamesSimple extends Component {
 
     state = {
         games: [],
     }
 
+
     componentDidMount() {
         axios.get('/games_simple').then(data => {
             let payload = data.data.games;
-            payload.map(x => {
+            payload.forEach(x => {
                 x.nodeTime = x.startTime;
                 if(!x.firstTeamBet) {
                     x.firstTeamBet = 'Goals';
                     x.startTime = x.startTime.replace('T', ' ').split('.')[0];
                 }
-                if(!x.secondTeamBet) {
+                else if(!x.secondTeamBet) {
                     x.secondTeamBet = 'Goals';
                     x.startTime = x.startTime.replace('T', ' ').split('.')[0];
                 }
-                if(!x.winningTeam) {
+                else if(!x.winningTeam) {
                     x.winningTeam = 'win';
                     x.startTime = x.startTime.replace('T', ' ').split('.')[0];
                 }
             });
 
             this.setState({games: payload});
-        })
+        }).catch(err => err);
     }
 
     dropGame1Handle = (value, index) => {
@@ -98,7 +99,7 @@ class ViewGames_simple extends Component {
                                         </tr>
                                     </thead>
                                     
-                                    <GamesTable_simple 
+                                    <GamesTableSimple 
                                         games={this.state.games}
                                         drop1={this.dropGame1Handle}
                                         drop2={this.dropGame2Handle}
@@ -117,4 +118,4 @@ class ViewGames_simple extends Component {
     }
 }
 
-export default ViewGames_simple;
+export default ViewGamesSimple;
