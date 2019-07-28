@@ -14,7 +14,20 @@
 }
 
 .big-looser {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(0, 51, 117);
+  font-weight: 400;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: rgb(255, 94, 0);
+}
+
+.big {
+  color: rgb(136, 0, 0);
+  font-weight: 700;
+}
+
+.big-looser:hover {
+  color: rgb(0, 183, 255);
 }
 
 .navbar-brand {
@@ -24,4 +37,36 @@
 
 .toggle-icon {
   color: white;
+  color: black;
+}
+
+.navbar {
+  padding-right: 200px;
+  padding-left: 200px;
+}
+
+.navbar-form {
+  color: rgb(0, 51, 117);
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.navbar-form:hover {
+  color: rgb(0, 183, 255);
+}
+
+.first {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 50px;
+}
+
+.second {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.third {
+  padding-right: 50px;
 }

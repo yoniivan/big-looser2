@@ -1,0 +1,157 @@
+.wrapper-welcome {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.header {
+  height: 88vh;
+  background-image: linear-gradient(
+      to right,
+      rgb(6, 18, 38, 0.8),
+      rgba(14, 39, 79, 0.8)
+    ),
+    url(../../../Assets/ball-background.png);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  position: relative;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 43%;
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: 34px;
+  animation-name: moveInLeft;
+  animation-duration: 5s;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 15px;
+  animation-name: moveInRight;
+  animation-duration: 5s;
+}
+
+main {
+  max-width: 100vw;
+  margin: 0 auto;
+  background-color: rgb(235, 235, 235);
+  height: 100vh;
+  margin-top: -190px;
+}
+
+.boxes {
+  width: calc(((100vw - 55px - (50px * 4) - (20px * 2) - (200px * 2))) / 3);
+  float: left;
+  margin-left: 200px;
+  margin-right: 200px;
+  height: 35vh;
+  margin-top: 300px;
+  margin-bottom: 10px;
+  text-align: center;
+  box-shadow: 0 20px 30px rgba(24, 24, 24, 0.3);
+  background-color: rgba(124, 124, 124, 0.1);
+  border: 1px solid rgba(124, 124, 124, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  transition: transform 0.4s;
+}
+
+.boxes:hover {
+  transform: translateY(-25px) scale(1.1);
+}
+
+.first-box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+.second-box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.third-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.title-box {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: rgb(54, 54, 54);
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  color: rgb(46, 46, 46);
+}
+
+.fa {
+  font-size: 50px;
+  margin-bottom: 40px;
+  color: rgb(0, 48, 179, 0.5);
+}
+
+.fa-money {
+  color: rgba(0, 59, 8, 0.5);
+}
+
+.fa-soccer-ball-o {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}

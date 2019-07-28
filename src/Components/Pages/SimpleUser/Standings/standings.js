@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card } from 'react-bootstrap';
 import axios from '../../../Utils/axios-users';
 import { connect } from 'react-redux';
+import './standings.css';
 
 class Standings extends Component{
 
@@ -28,10 +29,13 @@ class Standings extends Component{
             const notMarkedUser = {
                 backgroundColor: "rgba(128, 128, 128, 0)",
             }
+            //style={(user.firstName === this.props.firstName) && (user.lastName === this.props.lastName) ? markedUser : notMarkedUser}
             //(user.firstName).charAt(0).toUpperCase() + (user.firstName).slice(1)
+
+
             return (
-                    <tbody key={index} style={(user.firstName === this.props.firstName) && (user.lastName === this.props.lastName) ? markedUser : notMarkedUser}>
-                        <tr>
+                    <tbody key={index} >
+                        {<tr className={(index % 2 === 0) ? "standings-light" : "standings-dark"}>
                             <td>{index + 1}</td>
                             <td>{(user.firstName).charAt(0).toUpperCase() + (user.firstName).slice(1)}</td>
                             <td>{(user.lastName).charAt(0).toUpperCase() + (user.lastName).slice(1)}</td>
@@ -42,12 +46,13 @@ class Standings extends Component{
                             <td>{user.totalScore.sixPlus}</td>
                             <td>{user.totalScore.exactScore}</td>
                             <td>{user.totalScore.points}</td>
-                        </tr>
+                        </tr>}
                     </tbody>
                 )
         });
+        
 
-        const allUsers = (<Card><table className="table">
+        const allUsers = (<table>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>    
@@ -63,14 +68,12 @@ class Standings extends Component{
                                 </tr>
                             </thead>
                                 {loop}
-                            </table></Card>)
+                            </table>)
 
         const nameMarker = '';
-
-
         return(
-            <div>
-                <Card className="title"><h1>Standings</h1></Card>
+            <div className="standing-wrapper">
+                <h1>Standings</h1>
                        {allUsers}
             </div>
         );

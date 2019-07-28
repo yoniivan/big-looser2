@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import App from './App';
-import './index.css';
 import reducer from './Components/Store/reducer'
 import setAuthorizationToken from './Components/Utils/setAuthorizationToken';
 

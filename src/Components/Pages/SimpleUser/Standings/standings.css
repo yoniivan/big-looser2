@@ -1,0 +1,35 @@
+table {
+  width: 100vw;
+  border-collapse: separate;
+  border-spacing: 2px;
+  text-align: center;
+}
+
+tbody tr td {
+  padding: 15px;
+  color: none;
+  text-align: center;
+}
+
+.standings-dark {
+  background-color: #323c50;
+}
+
+.standings-light {
+  background-color: #2c3446;
+}
+
+.standings-dark:hover {
+  background-color: rgba(89, 89, 89, 0.5);
+  transition: all 3;
+}
+
+.standings-light:hover {
+  background-color: rgba(89, 89, 89, 0.5);
+  transition: all 3;
+}
+
+tbody tr td:hover {
+  background-color: rgb(209, 224, 0);
+  transform: scale(1.1);
+}

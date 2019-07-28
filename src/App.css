@@ -1,2 +1,24 @@
-.font-weight-bold {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  background-color: white;
+}
+
+.navigationBar {
+  background-color: blueviolet;
+  box-shadow: 0 20px 20px -20px rgba(255, 255, 255, 0.2);
+}
+
+/* html: {
+  backgroundColor: '#fff', 
+  height: '100vh'
+}, */

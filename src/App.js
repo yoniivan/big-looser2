@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as actionTypes from './Components/Store/Actions';
 import { logOut } from './Components/Utils/setAuthorizationToken';
 
+
 class App extends Component {
 
 
@@ -23,15 +24,13 @@ class App extends Component {
   render() {
 
 
-
-
    let loginRoute = {
       html: {
-        backgroundColor: '#f0f8ff', 
+        backgroundColor: '#fff', 
         height: '100vh'
       },
       body: {
-        backgroundColor: '#f0f8ff', 
+        backgroundColor: '#fff', 
         height: '100vh'
     }
   }
@@ -67,8 +66,8 @@ class App extends Component {
 
 
     if (this.props.token) {
-        loginRoute.body.backgroundColor = '#f0f8ff';
-        loginRoute.html.backgroundColor = '#f0f8ff';
+        loginRoute.body.backgroundColor = '#1F2739';
+        loginRoute.html.backgroundColor = '#1F2739';
         this.props.switchPage('/', 'Log-out');
       }
       
@@ -87,7 +86,7 @@ class App extends Component {
 
       <div style={loginRoute.html}>
         <div style={loginRoute.body}>
-        <NavigationBar 
+        <NavigationBar className="navigationBar"
           sidebar={this.sidebarHandler}
           login={this.props.pageTitle}
           loginPath={this.props.page}
