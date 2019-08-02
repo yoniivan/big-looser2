@@ -1,3 +1,5 @@
+@media (min-width: 1800px) {
+}
 .wrapper-welcome {
   margin-left: 20px;
   margin-right: 20px;
@@ -153,5 +155,65 @@ main {
   100% {
     opacity: 1;
     transform: translateX(0px);
+  }
+}
+
+@media (max-width: 600px) {
+  .text-box {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+  }
+
+  .wrapper-welcome {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .heading-primary-main {
+    display: block;
+    font-size: 30px;
+    width: 100vw;
+    font-weight: 700;
+    letter-spacing: 15px;
+    animation-name: moveInLeft;
+    animation-duration: 5s;
+  }
+
+  .heading-primary-sub {
+    display: block;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    animation-name: moveInRight;
+    animation-duration: 5s;
+  }
+
+  .boxes {
+    width: 100vw;
+    float: left;
+    height: 35vh;
+    text-align: center;
+    box-shadow: 0 20px 30px rgba(24, 24, 24, 0.3);
+    background-color: rgba(124, 124, 124, 0.1);
+    border: 1px solid rgba(124, 124, 124, 0.3);
+    border-radius: 10px;
+    transition: transform 0.4s;
+  }
+
+  .first-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .second-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .third-box {
+    display: flex;
+    flex-direction: column;
   }
 }

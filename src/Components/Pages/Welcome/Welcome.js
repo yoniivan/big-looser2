@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import './Welcome2.css';
-import { Jumbotron, Button } from 'react-bootstrap';
-import { IoIosMail, IoIosUnlock } from 'react-icons/io';
-
-
 
 class Welcome extends Component {
-
 
     registerHandler = () => {
         this.props.history.push('register');
