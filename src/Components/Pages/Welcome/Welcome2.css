@@ -1,5 +1,3 @@
-@media (min-width: 1800px) {
-}
 .wrapper-welcome {
   margin-left: 20px;
   margin-right: 20px;
@@ -159,10 +157,16 @@ main {
 }
 
 @media (max-width: 600px) {
+  html,
+  body {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
   .text-box {
     position: absolute;
     top: 40%;
-    left: 20%;
+    left: 16%;
     transform: translate(-50%, -50%);
   }
 
@@ -190,19 +194,35 @@ main {
     animation-duration: 5s;
   }
 
+  /* BOXES */
+
+  main {
+    max-width: 100vw;
+    margin: 0 auto;
+    background-color: rgb(235, 235, 235);
+    height: 150vh;
+    margin-top: -190px;
+  }
+
   .boxes {
-    width: 100vw;
+    width: 80vw;
     float: left;
+    margin-left: 10%;
+    margin-right: 10%;
     height: 35vh;
+    margin-top: 30px;
+    margin-bottom: 10px;
     text-align: center;
     box-shadow: 0 20px 30px rgba(24, 24, 24, 0.3);
     background-color: rgba(124, 124, 124, 0.1);
     border: 1px solid rgba(124, 124, 124, 0.3);
     border-radius: 10px;
+    padding: 20px;
     transition: transform 0.4s;
   }
 
   .first-box {
+    margin-top: 250px;
     display: flex;
     flex-direction: column;
   }

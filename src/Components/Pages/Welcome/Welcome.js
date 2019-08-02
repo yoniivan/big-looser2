@@ -20,7 +20,7 @@ class Welcome extends Component {
                 </header>
 
                 <main className="main-exp">
-
+                    
                     <div className="main-exp boxes first-box">
                         <span className="fa fa-money"></span>
                         <h2 className="main-exp title-box">Coast</h2>

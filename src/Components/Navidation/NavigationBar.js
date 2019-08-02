@@ -12,28 +12,24 @@ const NavigationBar = (props) => {
     if (props.name) {
         name = <p className="font-weight-bold">{props.name}</p>
     }
-
+//<div href="/" className="big-looser"><img src={logo} alt="Logo-top" className="Logo-top" /><span className="big">Big</span> Looser</div>
     return (
-      <Navbar className="navbar" bg="white" variant="white">
-          <IoIosList className="toggle-icon" size={32} onClick={props.sidebar}/>
-          <Nav.Link href="/" className="big-looser"><img src={logo} alt="Logo-top" className="Logo-top" /><span className="big">Big</span> Looser</Nav.Link>
-              <Nav className="mr-auto">
-          </Nav>
-          <Form className="navbar-form" inline>
-              <Nav.Link className="navbar-form third">
-                About
-              </Nav.Link>
-              <Nav.Link className="navbar-form second">
-                Contact
-              </Nav.Link>
-              <Nav.Link className="navbar-form first"
-                href={props.loginPath} 
-                >{props.login}
-              </Nav.Link>
-              {name}
-          </Form>
-      </Navbar>
+      <div className="navbar-logo">
+          {/* <IoIosList className="toggle-icon" size={32} onClick={props.sidebar}/> */}
+          <div className="logo-main">
+              <a href="/" className="big-looser">
+                  <img src={logo} alt="Logo-top" className="Logo-top" />
+                  <span className="big">Big</span>Looser</a>
+          </div>
+
+          <div className="navbar-form" inline>
+              <ul>
+                  <li><a className="navbar-form third">About</a></li>
+                  <li><a className="navbar-form second">Contact</a></li>
+                  <li><a className="navbar-form first" href={props.loginPath} >{props.login}{name}</a></li>
+              </ul>
+          </div>
+      </div>
       );
     }
-
 export default NavigationBar;
