@@ -14,11 +14,16 @@ class App extends Component {
   componentDidMount() {}
 
   sidebarHandler = () => {
-    if(this.props.sidebarToggle === 'sidebar-wrapper-large')
-      this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
- 
-    if(this.props.sidebarToggle === 'sidebar-wrapper-small')
-      this.props.sideBarState('sidebar-wrapper-large', 'page-content-wrapper-large');
+    console.log("sidebarHandler");
+    if(this.props.sidebarToggle === 'sidebar-wrapper-large'){
+        this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+        console.log("sidebarHandler");
+      }
+   
+      if(this.props.sidebarToggle === 'sidebar-wrapper-small'){
+        this.props.sideBarState('sidebar-wrapper-large', 'page-content-wrapper-large');
+        console.log("sidebarHandler");
+      }
   }
 
   render() {
@@ -37,33 +42,33 @@ class App extends Component {
 
     switch(location.pathname){
       case '/login':
-          console.log('CASE - login');
           loginRoute.body.backgroundColor = "#534292";
           loginRoute.html.backgroundColor = "#534292";
           break;
       case '/register':
-          console.log('CASE - register');
           loginRoute.body.backgroundColor = "#3a2778";
           loginRoute.html.backgroundColor = "#3a2778";
           this.props.switchPage('/login', 'Login');
           break;
       case '/':
-          console.log('CASE - /');
           logOut();
           break;
       case '/admin':
-          console.log('CASE - admin');
           this.props.switchPage('/', 'Log-out');
           break;
         case '/user':
-            console.log('CASE - user');
             this.props.switchPage('/', 'Log-out');
             break;  
       default:
         return '/';
     }
 
-
+    let toggleIcon = "toggle-icon-hidden";
+    if(this.props.token){
+      toggleIcon = "toggle-icon";
+    }else{
+      toggleIcon = "toggle-icon-hidden";
+    }
 
     if (this.props.token) {
         loginRoute.body.backgroundColor = '#1F2739';
@@ -88,6 +93,7 @@ class App extends Component {
         <div style={loginRoute.body}>
         <NavigationBar className="navigationBar"
           sidebar={this.sidebarHandler}
+          toggleIcon={toggleIcon}
           login={this.props.pageTitle}
           loginPath={this.props.page}
           signUpLink={this.props.page}

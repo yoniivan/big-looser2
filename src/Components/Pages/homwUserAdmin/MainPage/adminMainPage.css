@@ -30,7 +30,7 @@ h1 {
 }
 
 .page-content-wrapper-large {
-  width: 100%;
+  width: 100vw;
   position: absolute;
   padding: 15px;
   transition: padding-left 0.3s ease-out;
@@ -38,7 +38,7 @@ h1 {
 }
 
 .page-content-wrapper-small {
-  width: 100%;
+  width: 100vw;
   position: absolute;
   padding: 15px;
   transition: padding-left 0.3s ease-out;

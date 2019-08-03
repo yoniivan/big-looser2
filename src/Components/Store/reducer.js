@@ -17,6 +17,10 @@ const initialState = {
 
     sidebarToggle: 'sidebar-wrapper-large',
     pageShift: 'page-content-wrapper',
+
+
+
+    standings: 'standing-wrapper-open',
 }
 
 const reducer = (state = initialState, action) => {
@@ -96,6 +100,12 @@ const reducer = (state = initialState, action) => {
                 sidebarToggle: action.toggle,
                 pageShift: action.page,
                 }
+
+        case actionTypes.STANDINGS_SIDEBAR_STATE:
+            return {
+                ...state,
+                standings: action.open_closed,
+            }        
 
         default:
              return state;    

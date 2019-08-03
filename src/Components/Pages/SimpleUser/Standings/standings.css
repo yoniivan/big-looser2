@@ -1,14 +1,24 @@
-table {
-  width: 100vw;
+.standing-wrapper-open table {
+  width: 82vw;
+  margin: 10px;
   border-collapse: separate;
   border-spacing: 2px;
   text-align: center;
 }
 
-tbody tr td {
-  padding: 15px;
+.standing-wrapper-closed table {
+  width: 99vw;
+  margin: 10px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  text-align: center;
+}
+
+.standing-wrapper tbody tr td {
+  padding: 5px;
   color: none;
   text-align: center;
+  margin: 0px;
 }
 
 .standings-dark {
@@ -21,15 +31,12 @@ tbody tr td {
 
 .standings-dark:hover {
   background-color: rgba(89, 89, 89, 0.5);
-  transition: all 3;
+  color: white;
+  transition: all 0.3s;
 }
 
 .standings-light:hover {
   background-color: rgba(89, 89, 89, 0.5);
-  transition: all 3;
-}
-
-tbody tr td:hover {
-  background-color: rgb(209, 224, 0);
-  transform: scale(1.1);
+  color: white;
+  transition: all 0.2s;
 }

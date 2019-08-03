@@ -1,5 +1,6 @@
 ul {
   list-style-type: none;
+  margin: 0px;
 }
 
 li a {
@@ -10,16 +11,18 @@ li {
   float: left;
 }
 
+.sessionName {
+  margin-right: 35px;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 30px;
+  color: rgb(136, 0, 0);
+}
+
 .navbar-logo {
   display: inline-flex;
   width: 100vw;
   background-color: whitesmoke;
-}
-
-.font-weight-bold {
-  color: aliceblue;
-  padding-top: 17px;
-  padding-left: 20px;
 }
 
 .Logo-top {
@@ -56,6 +59,12 @@ li {
 .toggle-icon {
   color: white;
   color: black;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.toggle-icon-hidden {
+  visibility: hidden;
 }
 
 .logo-main {
@@ -81,7 +90,7 @@ ul li a:hover {
   text-decoration: none;
 }
 
-.first {
+ul li a .first {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 50px;
 }
@@ -97,6 +106,23 @@ ul li a:hover {
 }
 
 @media (max-width: 600px) {
+  .toggle-icon {
+    color: white;
+    color: black;
+    width: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+
+  .sessionName {
+    margin-right: 0px;
+    margin-top: 6px;
+    font-weight: 400;
+    font-size: 9px;
+    color: rgb(136, 0, 0);
+    text-align: end;
+  }
+
   .big-looser {
     color: rgb(0, 51, 117);
     font-weight: 400;
@@ -113,7 +139,7 @@ ul li a:hover {
   .navbar-form {
     color: rgb(0, 51, 117);
     font-weight: 400;
-    font-size: 9px;
+    font-size: 8px;
     text-transform: uppercase;
     margin-top: 7px;
     margin-right: 10px;
@@ -121,16 +147,16 @@ ul li a:hover {
 
   .first {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding-left: 10px;
+    padding-left: 5px;
   }
 
   .second {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
   }
 
   .third {
-    padding-right: 10px;
+    padding-right: 5px;
   }
 }

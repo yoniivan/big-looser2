@@ -12,3 +12,6 @@ export const SAVE_USERS = 'SAVE_USERS';
 
 export const LOG_OUT = 'LOG_OUT';
 export const SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE';
+
+
+export const STANDINGS_SIDEBAR_STATE = "STANDINGS_SIDEBAR_STATE";

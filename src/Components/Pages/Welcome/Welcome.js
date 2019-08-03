@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Welcome2.css';
+import './Welcome.css';
 
 class Welcome extends Component {
 
@@ -39,6 +39,14 @@ class Welcome extends Component {
                         <h2 className="main-exp text">This platform is very easy to use smooth and very responsive and give a lot of manegment options.</h2>
                     </div>
                 </main>
+                {/* <footer className="footer">
+                    <div className="footer sec1">
+
+                    </div>
+                    <div className="footer sec2">
+                        <p>All right receved by Yoni Ivan</p>
+                    </div>
+                </footer> */}
             </div>
         );
     }

@@ -124,6 +124,20 @@ main {
   color: rgba(0, 0, 0, 0.5);
 }
 
+/* footer {
+  height: 50vh;
+}
+
+.sec1 {
+  background-color: #232f3e;
+
+}
+
+.sec2 {
+  background-color: #131a22;
+  text-align: center;
+} */
+
 @keyframes moveInLeft {
   0% {
     opacity: 0;

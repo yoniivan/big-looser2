@@ -52,32 +52,44 @@ class AdminMainPage extends Component {
 
     adminHandler = () => {
         this.setPage('adminPage');
-        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large' && window.innerWidth < 600){
             this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("adminHandler");
+        }
     }
 
     insertHandler = () => {
         this.setPage('insertPage');
-        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large' && window.innerWidth < 600){
             this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small'); 
+            console.log("insertHandler");
+        }
     }
 
     userHanler = () => {
         this.setPage('usersPage'); 
-        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large' && window.innerWidth < 600){
             this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("userHanler");
+        }
     }
 
     standingsHandler = () => {
         this.setPage('standingsPage'); 
-        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+        console.log(screen.width)
+        console.log(screen.width < 600);
+        if(screen.width < 600){
             this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("standingsHandler");
+        }
     }
 
     viewGamesBetHandler = () => {
         this.setPage('viewBetGamesPage'); 
-        if(this.props.sidebarToggle === 'sidebar-wrapper-large')
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large' && window.innerWidth < 600){
             this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("viewGamesBetHandler");
+        }
     }
     
     render() {

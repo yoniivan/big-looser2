@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
 import axios from '../../../Utils/axios-users';
 import { connect } from 'react-redux';
 import './standings.css';
+import * as actionTypes from '../../../Store/Actions';
+
 
 class Standings extends Component{
 
     state = {
         table: [],
     }
+
 
     componentDidMount = () => {
         axios.get('/table').then(data => {
@@ -17,27 +19,20 @@ class Standings extends Component{
             }
         }).catch(err => err);
     }
-
     render() {
+        //sidebarToggle: 'sidebar-wrapper-large',
+        if(this.props.sidebarToggle === "sidebar-wrapper-large"){
+            this.props.sideStandings("standing-wrapper-open");
+        }else{
+            this.props.sideStandings("standing-wrapper-closed");
+        }
 
         const loop = this.state.table.map((user, index) => {
-            const markedUser = {
-                backgroundColor: "rgb(255, 0, 0)",
-                color: "rgb(255, 255, 255)",
-            }
-
-            const notMarkedUser = {
-                backgroundColor: "rgba(128, 128, 128, 0)",
-            }
-            //style={(user.firstName === this.props.firstName) && (user.lastName === this.props.lastName) ? markedUser : notMarkedUser}
-            //(user.firstName).charAt(0).toUpperCase() + (user.firstName).slice(1)
-
-
             return (
                     <tbody key={index} >
                         {<tr className={(index % 2 === 0) ? "standings-light" : "standings-dark"}>
-                            <td>{index + 1}</td>
-                            <td>{(user.firstName).charAt(0).toUpperCase() + (user.firstName).slice(1)}</td>
+                            <td className="cl">{index + 1}</td>
+                            <td className="cl">{(user.firstName).charAt(0).toUpperCase() + (user.firstName).slice(1)}</td>
                             <td>{(user.lastName).charAt(0).toUpperCase() + (user.lastName).slice(1)}</td>
                             <td>{user.totalScore.direction}</td>
                             <td>{user.totalScore.zeroOne}</td>
@@ -50,29 +45,25 @@ class Standings extends Component{
                     </tbody>
                 )
         });
-        
-
         const allUsers = (<table>
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>    
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Direction</th>
-                                    <th scope="col">0-1</th>
-                                    <th scope="col">2-3</th>
-                                    <th scope="col">4-5</th>
-                                    <th scope="col">6+</th>
-                                    <th scope="col">Bingo</th>
-                                    <th scope="col">Points</th>
+                                    <th>#</th>    
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Direction</th>
+                                    <th>0-1</th>
+                                    <th>2-3</th>
+                                    <th>4-5</th>
+                                    <th>6+</th>
+                                    <th>Bingo</th>
+                                    <th>Points</th>
                                 </tr>
                             </thead>
                                 {loop}
                             </table>)
-
-        const nameMarker = '';
         return(
-            <div className="standing-wrapper">
+            <div className={this.props.standing}>
                 <h1>Standings</h1>
                        {allUsers}
             </div>
@@ -84,12 +75,16 @@ const mapStateToProps = state => {
     return {
         firstName: state.firstName,
         lastName: state.lastName,
+        standing: state.standings,
+        sidebarToggle: state.sidebarToggle,
         
     };
 }
 
 const mapDispachToProps = dispatch => {
-    return {};
+    return {
+        sideStandings: (open_closed) => dispatch({type: actionTypes.STANDINGS_SIDEBAR_STATE, open_closed}),
+    };
 };
 
 export default connect(mapStateToProps, mapDispachToProps)(Standings);
