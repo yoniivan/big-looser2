@@ -209,7 +209,7 @@ main {
     float: left;
     margin-left: 10%;
     margin-right: 10%;
-    height: 35vh;
+    height: 45vh;
     margin-top: 30px;
     margin-bottom: 10px;
     text-align: center;
@@ -235,5 +235,25 @@ main {
   .third-box {
     display: flex;
     flex-direction: column;
+  }
+
+  .title-box {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: rgb(54, 54, 54);
+  }
+
+  .text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: rgb(46, 46, 46);
+  }
+
+  .fa {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: rgb(0, 48, 179, 0.5);
   }
 }
