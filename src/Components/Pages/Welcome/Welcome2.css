@@ -166,7 +166,7 @@ main {
   .text-box {
     position: absolute;
     top: 40%;
-    left: 16%;
+    left: 13%;
     transform: translate(-50%, -50%);
   }
 
@@ -200,7 +200,7 @@ main {
     max-width: 100vw;
     margin: 0 auto;
     background-color: rgb(235, 235, 235);
-    height: 150vh;
+    height: 180vh;
     margin-top: -190px;
   }
 
@@ -255,5 +255,9 @@ main {
     font-size: 50px;
     margin-bottom: 20px;
     color: rgb(0, 48, 179, 0.5);
+  }
+
+  .boxes:hover {
+    transform: translateY(-15px) scale(1.05);
   }
 }
