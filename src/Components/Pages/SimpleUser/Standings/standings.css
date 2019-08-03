@@ -40,3 +40,25 @@
   color: white;
   transition: all 0.2s;
 }
+
+@media (max-width: 600px) {
+  .standing-wrapper-closed table {
+    width: 90vw;
+    margin: 10px;
+    border-collapse: separate;
+    border-spacing: 2px;
+    text-align: center;
+  }
+
+  table thead tr th {
+    font-size: 10px;
+  }
+
+  .standing-title {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+    font-style: bold;
+    color: white;
+  }
+}

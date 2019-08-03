@@ -64,13 +64,12 @@ class Standings extends Component{
                             </table>)
         return(
             <div className={this.props.standing}>
-                <h1>Standings</h1>
+                <p className="standing-title">Standings</p>
                        {allUsers}
             </div>
         );
     }
 }
-
 const mapStateToProps = state => {
     return {
         firstName: state.firstName,
