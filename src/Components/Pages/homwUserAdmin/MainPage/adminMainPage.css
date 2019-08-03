@@ -62,8 +62,17 @@ h1 {
 }
 
 @media (max-width: 1000px) {
+  .sidebar-nav {
+    width: 100vw;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
   .page-content-wrapper-large {
-    width: 100%;
+    width: 100vw;
     position: absolute;
     padding: 15px;
     padding-left: 100%;
@@ -72,8 +81,8 @@ h1 {
   .sidebar-wrapper-large {
     z-index: 1;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 96vw;
+    height: 95vh;
     overflow: hidden;
     background: #2c3e50;
     opacity: 1;
