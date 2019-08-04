@@ -13,7 +13,6 @@ import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
 
 
 class AdminMainPage extends Component {
-
     componentDidMount() {
         console.log('[AdminMainPage]');
         const tokenLocal = localStorage.getItem('token')
@@ -116,11 +115,11 @@ class AdminMainPage extends Component {
                 page = <AdminWelcomePage />            
         }
         return( 
-            <div className="wrapper">
+            <div className="wrapper-admin">
                 {/* SideBar */}
                 <div className={this.props.sidebarToggle}>
+
                     <ul className="sidebar-nav">
-                        
                         <li><a onClick={this.adminHandler}>Admin mane page</a></li>
                         <li><a onClick={this.userHanler}>View all users</a></li>
                         <li><a onClick={this.insertHandler}>Insert gmaes</a></li>

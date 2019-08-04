@@ -124,8 +124,9 @@ class Login extends Component {
 
         return(
             <div className="wrapper-login">
-                <div>
-                    <img src={logo} alt="Logo" className="logo" />
+                <div className="logo-div">
+                    <img src={logo} alt="Logo" className="logo-login" />
+                    <span className="big-login">Big <span className="looser-login">Looser</span> </span>
                 </div>
                 <div>
                 <LoginForm className="login-form"

@@ -33,12 +33,19 @@ form.Group {
 
 .button-checkbox {
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .form-group {
   padding-left: 15px;
+}
+
+.form-check {
+  margin-left: 20px;
+  margin-top: 3px;
+}
+
+.form-check-input {
+  margin-top: 8px;
 }
 
 .show-error-network {

@@ -10,7 +10,7 @@ const LoginForm = (props) => {
         <div>
             <Card className="card-login">
                     <div className="btn-form">
-                    <Card.Title className="card-title">Log in to youraccount</Card.Title>
+                    <Card.Title className="card-title">Login to your account</Card.Title>
                     <span className={props.networkErrorSpan}>
                         {props.errorNetworkMessage}
                     </span>
