@@ -119,26 +119,42 @@ class Users extends Component{
         if(this.state.emailSeach.message !== '')
             error = "showErrorMessageUsers";
         
-        const allUsers = (<table className="table">
-                            <thead>
-                                <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">First Nane</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">E-Mail</th>
-                                </tr>
-                            </thead>
-                            
-                            <UsersTable 
-                                users={this.props.users}
-                                deleteRow={this.deleteHandler}
-                            />
-                        </table>)
+            const Allusers = this.props.users.map((user, index) => {
+                return (
+                    <tbody key={index}>
+                        <tr>
+                            <td>{index + 1}</td>
+                            <td>{user.firstName}</td>
+                            <td>{user.lastName}</td>
+                            <td>{user.email}</td>
+                            <td className="td-btn-remove"><Button 
+                                //onClick={() => props.deleteRow(index)}
+                                type="submit"
+                                variant="primary">
+                                Remove
+                                </Button>
+                            </td>
+                        </tr>
+                    </tbody>  
+                    )
+            });
             
         return(
             <div className="wrapper-users">
-                <Card className="title"><h1>View all users</h1></Card>
-                <Card>{allUsers}</Card>
+                <p className="title-users">View all users</p>
+                <div className="table-users">
+                    <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Nane</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">E-Mail</th>
+                        </tr>
+                    </thead>
+                        {Allusers}
+                </table>
+                </div>
                 <div>
                     <div className="input_btn">
                         <div className="search-div">
@@ -164,15 +180,13 @@ class Users extends Component{
                             </Button>
                         </div>
                     </div>
-                    <Card>
-                    <table className="table">
+                    <div className="table-search"><table>
                         <tbody>
                         <tr>
                             <td>#</td>
                             <td>{this.state.firstName}</td>
                             <td>{this.state.lastName}</td>
                             <td>{this.state.eMail}</td>
-                            <td>{this.state.groupName}</td>
                             <td>
                                 <Button 
                                     onClick={() => this.AddButtonHandler()}
@@ -184,7 +198,7 @@ class Users extends Component{
                         </tr>
                         </tbody>
                     </table>
-                    </Card>
+                    </div>
 
                 </div>
             </div>

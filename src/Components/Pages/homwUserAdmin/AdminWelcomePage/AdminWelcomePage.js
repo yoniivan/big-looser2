@@ -53,7 +53,7 @@ class AdminWelcomePage extends Component {
         return(
             <div className="admin-welcome-wrapper">
                 <div className="admin-welcome-title">
-                    <div>Last update: {this.state.date}</div>
+                    <div className="last-update">Last update: {this.state.date}</div>
                     <div>
                     <FormControl className="form-title"
                         aria-label="Username"

@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const GameElement = (props) => {
     return(
-        <Card className="wrapper-game-elm">
             <div className="allForms">
                 <div>
                     <FormControl className="game-form"
@@ -22,9 +21,9 @@ const GameElement = (props) => {
                     </span>
                 </div>
                 <div>
-                    <h3>VS</h3>
+                    <h3 className="div-insert">VS</h3>
                 </div>
-                <div>
+                <div className="div-insert">
                     <FormControl className="game-form"
                     placeholder="Team2"
                     aria-label="text"
@@ -35,7 +34,7 @@ const GameElement = (props) => {
                         {props.teamTwoErrorMessage}
                     </span>
                 </div>
-                <div>
+                <div className="div-insert">
                     <DatePicker className="dateTimePicker"
                     selected={props.startDate}
                     onChange={props.dateChange}
@@ -46,7 +45,6 @@ const GameElement = (props) => {
                     timeCaption="time"/>
                 </div>
                 </div>
-        </Card>
     );
 }
 

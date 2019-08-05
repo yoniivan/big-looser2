@@ -5,7 +5,7 @@ const UsersTable = (props) => {
 
     const Allusers = props.users.map((user, index) => {
         return (
-            <tr key={index}>
+            <tr key={index} >
                 <td>{index + 1}</td>
                 <td>{user.firstName}</td>
                 <td>{user.lastName}</td>

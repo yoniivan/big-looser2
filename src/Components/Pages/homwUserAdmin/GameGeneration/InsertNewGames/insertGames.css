@@ -2,3 +2,41 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.insert-title {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 2px;
+  text-align: center;
+  width: 82vw;
+}
+
+table:hover {
+  color: white;
+  margin: 0 auto;
+  transition: all 0.5s;
+}
+
+.table-insert table tbody:nth-child(odd) {
+  background-color: #323c50;
+}
+
+.table-insert table tbody:nth-child(even) {
+  background-color: #2c3446;
+}
+
+@media (max-width: 600px) {
+  .table-insert table {
+    font-size: 10px;
+  }
+
+  button {
+    font-size: 10px;
+  }
+}

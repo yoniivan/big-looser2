@@ -14,6 +14,15 @@
   margin-top: 20px;
 }
 
+.last-update {
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.last-update:hover {
+  color: white;
+}
+
 .form-group {
   padding: 0px;
 }
@@ -22,5 +31,10 @@
   .admin-welcome-title {
     display: flex;
     flex-direction: column;
+  }
+
+  .last-update {
+    margin-bottom: 15px;
+    margin-top: 0px;
   }
 }

@@ -6,6 +6,13 @@
   text-align: center;
 }
 
+.standing-title {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+}
+
 .standing-wrapper-closed table {
   width: 99vw;
   margin: 10px;
@@ -55,10 +62,9 @@
   }
 
   .standing-title {
-    font-size: 15px;
+    font-size: 20px;
     text-align: center;
-    font-weight: 400;
-    font-style: bold;
+    font-weight: 700;
     color: white;
   }
 }

@@ -77,20 +77,6 @@ class InserGames extends Component {
                 nodeDate: this.state.nodeDate,
                 groupName: this.props.groupName,
             }
-
-            // console.log(payload);
-            // axios.post('/gameinsert', payload).then(data => {
-            //     console.log('[INSERT_GSMES]' + data);
-            // })
-
-            // this.props.saveGames(games);
-          
-                
-            // console.log(this.props.games[0]);
-            
-
-            // this.setState({ gameOne: '' });
-            // this.setState({ gameTwo: '' });
         }
     }
     
@@ -184,7 +170,7 @@ class InserGames extends Component {
         let gameTable = null
         if (this.props.games.length > 0){
             gameTable =  (
-                <table className="table"><GameTable 
+                <table><GameTable 
                         games={this.props.games}
                         deleteRow={this.deleteHandler}
                         updateRow={this.updateHandler}
@@ -195,12 +181,12 @@ class InserGames extends Component {
                 /></table>
             );
         }else{
-            gameTable = <Card><h1>Please insert games</h1></Card>;
+            gameTable = <h1>Please insert games</h1>;
         }
 
         return(
             <div className="wrapper-admin">
-                <Card className="title"><h1>Inser games</h1></Card>
+                <p className="insert-title">Inser games</p>
                 <GameElement className="gameElement"
                     teamOne={this.state.gameOne.value}
                     teamTwo={this.state.gameTwo.value}
@@ -214,13 +200,12 @@ class InserGames extends Component {
                     showOneValid={validOne}
                     showTwoValid={validTwo}
                     />
-                <Card>
-                </Card>
+ 
                 <Button className="generateBtn" onClick={this.generateGamesHandler}>Gerate Game</Button>
 
-                <Card>
+                <div className="table-insert">
                     {gameTable}
-                </Card>
+                </div>
             </div>
         );
     }
