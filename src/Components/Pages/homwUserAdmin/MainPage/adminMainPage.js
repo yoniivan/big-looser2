@@ -114,6 +114,7 @@ class AdminMainPage extends Component {
             default:
                 page = <AdminWelcomePage />            
         }
+        
         return( 
             <div className="wrapper-admin">
                 {/* SideBar */}

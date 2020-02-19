@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import GameElement from '../gameElement';
 import axios from '../../../../Utils/axios-users';
@@ -59,25 +59,32 @@ class InserGames extends Component {
     }
     generateGamesHandler = () => {
         console.log('[generateGamesHandler]')
-        this.insertGameValidation().then(valid => {
-            console.log(this.state);
-        });
-        if (this.state.gameOne !== '' && this.state.gameTwo !== '') {
+        // this.insertGameValidation().then(valid => {
+        //     console.log(valid)
+        // }).catch(err => {
+        //     console.log(err)
+        // });
 
-            const games = {
-                teamOne: this.state.gameOne.value,
-                teamTwo: this.state.gameTwo.value,
-                nodeDate: this.state.nodeDate,
-                reduxDate: this.state.reduxDate,
-            }
 
-            const payload = {
-                teamOne: this.state.gameOne.value,
-                teamTwo: this.state.gameTwo.value,
-                nodeDate: this.state.nodeDate,
-                groupName: this.props.groupName,
+        this.insertGameValidation().then(cnt => {
+            if(cnt === 2){
+                let payload = null;
+    
+                payload = {
+                    teamOne: this.state.gameOne.value,
+                    teamTwo: this.state.gameTwo.value,
+                    nodeDate: this.state.reduxDate,
+                    groupName: this.props.groupName,
+                }
+
+                axios.post('/gameinsert', payload).then(payload => {
+                    console.log("Game updated!");
+                    // Build a pop up message.
+                }).catch(err => {
+                    console.log(err);
+                });
             }
-        }
+        });   
     }
     
     teamOneHandler = (e) => {
@@ -95,10 +102,13 @@ class InserGames extends Component {
             gameId: this.props.games[index].gameId,
         }
         axios.put('/gameinsert', payload).then(data => {
+            console.log(data)
             console.log(data.status)
             if(data.status === 201){
                 this.props.removeGame(index); 
             }
+        }).catch(err => {
+            console.log(err)
         });
     }
 
@@ -109,12 +119,17 @@ class InserGames extends Component {
     }
 
     insertGameValidation = async() => {
-        if(this.state.gameOne.value === '')
+        let cnt = 0;
+        if(this.state.gameOne.value === ''){
+            cnt++;
             await this.setStateAsync({gameOne: {...this.state.gameOne, message: 'Please enter gmaeOne.', required: false}});
+        }
 
-        if(this.state.gameTwo.value === '')
+        if(this.state.gameTwo.value === ''){
+            cnt++;
             await this.setStateAsync({gameTwo: {...this.state.gameTwo, message: 'Please enter gameTwo.', required: false}});
-        
+        }
+        return cnt;
     }
 
     updateHandler = (index) => {
@@ -132,10 +147,12 @@ class InserGames extends Component {
             secondTeam: this.props.games[index].teamTwo,
         }
         console.log(payload);
-        // axios.put('/gameinsert', payload).then(data => {
-
-        // });
-        // this.props.saveGames(index, games);
+        axios.put('/gameinsert', payload).then(data => {
+            console.log(data)
+        }).catch(err => {
+            console.log(err);
+        });
+        this.props.saveGames(index, games);
     }
 
     drop1Handler = (value, index) => {

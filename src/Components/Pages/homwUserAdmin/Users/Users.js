@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { FormControl, InputGroup, Card, Button } from 'react-bootstrap';
+import { FormControl, InputGroup, Button } from 'react-bootstrap';
 import './users.css';
 import axios from '../../../Utils/axios-users';
 import * as actionTypes from '../../../Store/Actions';
 import { connect } from 'react-redux';
-import UsersTable from './usersTable';
+// import UsersTable from './usersTable';
 import '../../stylingCommon.css';
 
 class Users extends Component{

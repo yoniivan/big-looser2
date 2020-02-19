@@ -47,6 +47,7 @@ class Login extends Component {
         });
     }
 
+
     loginVertification = async() => {
         
         if(this.state.email.value === ''){
@@ -135,7 +136,6 @@ class Login extends Component {
                     password={this.state.password.value}
                     passwordChange={this.passwordHandler}
                     click={this.loginHandler}
-                    signUp={this.signUpHandler}
                     href={this.props.page}
 
                     userNameShow={userNameStyle || ''}

@@ -6,6 +6,7 @@ import * as actionTypes from '../../../Store/Actions';
 import ViewGamesSimple from '../ViewGames/viewGames';
 import UserWelcome from '../UserWelcomePage/userWelcome';
 import Standings from '../Standings/standings';
+import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
 
 
 class MainPage_simple extends Component {
@@ -34,40 +35,82 @@ class MainPage_simple extends Component {
         pageActive: '',
     }
 
+    setPage = (page) => {
+        if(!checkExpireToken())
+            this.setState({pageActive: page})
+        else{
+            logOut();    
+            this.props.switchPage('/', 'Login');
+            this.props.history.push('/');
+        }
+    }
+
     userHandler = () => {
-        this.setState({pageActive: 'userPage'})
+        this.setPage('usersPage'); 
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large' && window.innerWidth < 600){
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("userHanler");
+        }
     }
 
     viewGamesHandler = () => {
-        this.setState({pageActive: 'viewGamesPage'});
+        this.setPage('ViewGamesSimple'); 
+        if(this.props.sidebarToggle === 'sidebar-wrapper-large' && window.innerWidth < 600){
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("ViewGamesSimple");
+        }
     }
 
     standingsHandler = () => {
-        this.setState({pageActive: 'standingPage'});
+        this.setPage('standingsPage'); 
+        if(screen.width < 600){
+            this.props.sideBarState('sidebar-wrapper-small', 'page-content-wrapper-small');
+            console.log("standingsHandler");
+        }
     }
     
     render() {
-        let page = <h1>Simple User</h1>;
+        // let page = null;
+        // switch(this.state.pageActive) {
+        //     case 'viewGamesPage':
+        //         page = <ViewGamesSimple />
+        //         console.log(this.state.pageActive)
+        //         break;
+        //     case 'userPage':
+        //         page = <UserWelcome />
+        //         console.log(this.state.pageActive)
+        //         break; 
+        //     case 'standingPage':
+        //         page = <Standings />
+        //         console.log(this.state.pageActive)            
+        //         break;        
+        //     default:
+        //         page = <UserWelcome />
+        //         console.log(this.state.pageActive)
+        // }
+        
+        let page = null;
+
         switch(this.state.pageActive) {
-            case 'viewGamesPage':
-                page = <ViewGamesSimple />
+  
+            case 'standingsPage':
+                page = <Standings />
+                
+                break;   
+            case 'ViewGamesSimple':
+                console.log("ViewGamesSimple");
+                page =  <ViewGamesSimple/> 
                 break;
-            case 'userPage':
-                page = <UserWelcome />
-                break; 
-            case 'standingPage':
-                page = <Standings />            
-                break;        
             default:
                 page = <UserWelcome />
-                }
+                  
+        }
         
         return(
-            
             <div className="wrapper">
 
                 {/* SideBar */}
-                <div className="sidebar-wrapper">
+                <div className={this.props.sidebarToggle}>
                     <ul className="sidebar-nav">
                         <li><a onClick={this.userHandler}>Admin mane page</a></li>
                         <li><a onClick={this.viewGamesHandler}>View all Games</a></li>
@@ -76,7 +119,7 @@ class MainPage_simple extends Component {
                 </div>
 
                 {/* Content */}
-                <div className="page-content-wrapper">
+                <div className={this.props.pageShift}>
                     <div className="cotainer-fluid">
                         <div className="row">
                             <div className="col-lg-12">
@@ -91,13 +134,18 @@ class MainPage_simple extends Component {
 }
 
 const mapStateToProps = state => {
-    return {};
+    return {
+        sidebarToggle: state.sidebarToggle,
+        pageShift: state.pageShift,
+    };
 }
 
 const mapDispachToProps = dispatch => {
   return {
-        saveUserParams: (userParams) => dispatch({type: actionTypes.SAVE_USER_PARAMS, userParams})
-  }
+        saveUserParams: (userParams) => dispatch({type: actionTypes.SAVE_USER_PARAMS, userParams}),
+        switchPage: (page, pageTitle) => dispatch({type: actionTypes.REGISTER_LOGIN_PAGE, page, pageTitle}),
+        sideBarState: (toggle, page) => dispatch({type: actionTypes.SIDEBAR_TOGGLE, toggle, page}),
+    }
 };
 
 export default connect(mapStateToProps, mapDispachToProps)(MainPage_simple);

@@ -44,10 +44,14 @@ class App extends Component {
       case '/login':
           loginRoute.body.backgroundColor = "#534292";
           loginRoute.html.backgroundColor = "#534292";
+          loginRoute.body.height = "130vh";
+          loginRoute.html.height = "130vh";
           break;
       case '/register':
           loginRoute.body.backgroundColor = "#3a2778";
           loginRoute.html.backgroundColor = "#3a2778";
+          loginRoute.body.height = "160vh";
+          loginRoute.html.height = "160vh";
           this.props.switchPage('/login', 'Login');
           break;
       case '/':

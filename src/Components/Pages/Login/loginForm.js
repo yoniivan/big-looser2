@@ -59,7 +59,7 @@ const LoginForm = (props) => {
                     <div className="footer-login">
                     <Card.Footer className="text-muted">New to BigLooser? <Link
                         to={props.href}
-                        onClick={(e) => props.signUp(e)}>
+                        onClick={props.signUp}>
                         Sign up 
                     </Link></Card.Footer></div>
                 </Card>    

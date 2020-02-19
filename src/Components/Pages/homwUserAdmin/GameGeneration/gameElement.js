@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, Card } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 import './gameElement.css';
 import DatePicker from "react-datepicker";
  

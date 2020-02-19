@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navbar, Nav, Form } from 'react-bootstrap';
 import '../../App.css';
 import './navigationBar.css';
 import logo from '../../Assets/bigLooserLogo.png';
@@ -21,7 +20,7 @@ const NavigationBar = (props) => {
                   <img src={logo} alt="Logo-top" className="Logo-top" />
                   <span className="big">Big</span>Looser</a>
           </div>
-          <div className="navbar-form" inline>
+          <div className="navbar-form">
               <ul>
                   <li><a className="navbar-form third">About</a></li>
                   <li><a className="navbar-form second">Contact</a></li>

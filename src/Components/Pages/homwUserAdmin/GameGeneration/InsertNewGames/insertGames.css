@@ -32,6 +32,9 @@ table:hover {
 }
 
 @media (max-width: 600px) {
+  .table-insert{
+    flex-direction: column;
+  }
   .table-insert table {
     font-size: 10px;
   }
