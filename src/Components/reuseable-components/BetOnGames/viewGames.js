@@ -6,11 +6,13 @@ import GamesTableSimple from './gamesTableSimple';
 import './viewGames.css';
 import { Card } from 'react-bootstrap';
 import '../../../Components/Pages/stylingCommon.css'
+import Spinner from '../Spinner/spinner';
 
 class ViewGamesSimple extends Component {
 
     state = {
         games: [],
+        loading: true,
     }
 
 
@@ -33,7 +35,7 @@ class ViewGamesSimple extends Component {
                 }
             });
 
-            this.setState({games: payload});
+            this.setState({games: payload, loading: false});
         }).catch(err => err);
     }
 
@@ -86,7 +88,7 @@ class ViewGamesSimple extends Component {
         return(
                 <div className="wrapper-view-games">
                     <Card className="title"><h1>Bet on Games</h1></Card>
-                    <Card><table className="table">
+                    {!this.state.loading ? <Card><table className="table">
                                     <thead>
                                         <tr>
                                         <th scope="col">#</th>    
@@ -108,7 +110,7 @@ class ViewGamesSimple extends Component {
                                         drop4={this.dropTotalGoalsHandler}
                                         betClick={this.betHandle}
                                     />
-                    </table></Card>
+                    </table></Card> : <Spinner />}
                     <Card className="instruction">
                         <h3>Instruction</h3>
                         <p>Betting options you can bet....</p>

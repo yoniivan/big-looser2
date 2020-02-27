@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode';
 import * as actionTypes from '../../../Store/Actions';
 import logo from '../../../../Assets/bigLooserLogo.png';
 import { Link } from 'react-router-dom';
+import Spinner from '../../../reuseable-components/Spinner/spinner';
 
 
 
@@ -154,7 +155,7 @@ class Login extends Component {
 
                     networkErrorSpan={networkErrorSpan || ''}
                     errorNetworkMessage={this.state.networkErrorMessage || ''}
-                />  : <div id="sppiner" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+                />  : <Spinner />}
                 </div>
 
                 <div> {!this.state.loading ? 
@@ -187,3 +188,6 @@ const mapDispachToProps = dispatch => {
 export default connect(mapStateToProps, mapDispachToProps)(Login)
 
 
+
+
+//C:\Users\yoni1\OneDrive\Desktop\biglooser\big-looser2\src\Components\Pages\StructuresPages\Login\Login.js

@@ -5,7 +5,7 @@ import './mainPage_simple.css';
 import * as actionTypes from '../../../Store/Actions';
 import ViewGamesSimple from '../../../reuseable-components/BetOnGames/viewGames';
 import UserWelcome from '../UserWelcomePage/userWelcome';
-import Standings from '../Standings/standings';
+import Standings from '../../../reuseable-components/Standings/standings';
 import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
 
 

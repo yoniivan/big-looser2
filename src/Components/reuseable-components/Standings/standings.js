@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import axios from '../../../Utils/axios-users';
+import axios from '../../Utils/axios-users';
 import { connect } from 'react-redux';
 import './standings.css';
-import * as actionTypes from '../../../Store/Actions';
+import Spinner from '../Spinner/spinner';
+import * as actionTypes from '../../Store/Actions';
 
 
 class Standings extends Component{
 
     state = {
         table: [],
+        loading: true,
     }
-
 
     componentDidMount = () => {
         axios.get('/table').then(data => {
             for(let i = 0; i < data.data.length; i++){
-                this.setState({table: data.data});
+                this.setState({table: data.data, loading: false});
             }
         }).catch(err => err);
     }
@@ -45,7 +46,11 @@ class Standings extends Component{
                     </tbody>
                 )
         });
-        const allUsers = (<table>
+        let allUsers = (<Spinner />);
+        if (!this.state.loading){
+           
+        
+        allUsers = (<table>
                             <thead>
                                 <tr>
                                     <th>#</th>    
@@ -62,6 +67,7 @@ class Standings extends Component{
                             </thead>
                                 {loop}
                             </table>)
+        }
         return(
             <div className={this.props.standing}>
                 <p className="standing-title">Standings</p>

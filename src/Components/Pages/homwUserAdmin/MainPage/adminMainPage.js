@@ -6,7 +6,7 @@ import InserGames from '../GameGeneration/InsertNewGames/insertGames';
 import Users from '../Users/Users';
 import AdminWelcomePage from '../AdminWelcomePage/AdminWelcomePage';
 import * as actionTypes from '../../../Store/Actions';
-import Standings from '../../SimpleUser/Standings/standings';
+import Standings from '../../../reuseable-components/Standings/standings';
 import ViewGamesSimple from '../../../reuseable-components/BetOnGames/viewGames';
 import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
 
@@ -36,7 +36,6 @@ class AdminMainPage extends Component {
 
     state = {
         pageActive: 'adminPage',
-
     }
 
     setPage = (page) => {
@@ -74,6 +73,7 @@ class AdminMainPage extends Component {
     }
 
     standingsHandler = () => {
+        // this.setState({ loading: true })
         this.setPage('standingsPage'); 
         console.log(screen.width)
         console.log(screen.width < 600);
@@ -95,24 +95,26 @@ class AdminMainPage extends Component {
         
         let page = null;
 
+        // this.setState({ loading: true });
+
         switch(this.state.pageActive) {
             case 'usersPage':
                 page = <Users />
                 break;
             case 'insertPage':
-                page = <InserGames />
+                page = <InserGames />;
                 break;
             case 'adminPage':
-                page = <AdminWelcomePage />
+                page = <AdminWelcomePage />;
                 break; 
             case 'viewBetGamesPage':
-                page = <ViewGamesSimple />
+                page = <ViewGamesSimple />;
                 break;    
             case 'standingsPage':
-                page = <Standings />
+                page = <Standings />;
                 break;     
             default:
-                page = <AdminWelcomePage />            
+                page = <AdminWelcomePage />  ;          
         }
         
         return( 
