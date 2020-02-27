@@ -60,9 +60,16 @@ class App extends Component {
       case '/admin':
           this.props.switchPage('/', 'Log-out');
           break;
-        case '/user':
+      case '/user':
             this.props.switchPage('/', 'Log-out');
-            break;  
+            break; 
+      case '/frogot':
+            loginRoute.body.backgroundColor = "#534292";
+            loginRoute.html.backgroundColor = "#534292";
+            loginRoute.body.height = "130vh";
+            loginRoute.html.height = "130vh";
+            break;   
+          
       default:
         return '/';
     }

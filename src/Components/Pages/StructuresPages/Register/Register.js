@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './Register.css';
 import { connect } from 'react-redux';
-import axios from '../../Utils/axios-users';
+import axios from '../../../Utils/axios-users';
 import { Card, Button } from 'react-bootstrap';
 import Forms from './formRegister';
-import * as actionTypes from '../../Store/Actions';
+import * as actionTypes from '../../../Store/Actions';
 import { Link } from 'react-router-dom';
+import logo from '../../../../Assets/bigLooserLogo.png';
 
 
 class Register extends Component {
@@ -177,6 +178,10 @@ class Register extends Component {
            
         return(
             <div className="wrapper-register">
+                    <div className="logo-div">
+                    <img src={logo} alt="Logo" className="logo-login" />
+                    <span className="big-login">Big <span className="looser-login">Looser</span> </span>
+                </div>
                 <Card className="card-register">
                     <div className="btn-form">
                     <Card.Title className="card-title">Register</Card.Title>

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Login from '../Pages/Login/Login';
-import Welcome from '../Pages/Welcome/Welcome';
-import Register from '../Pages/Register/Register';
+import Login from '../Pages/StructuresPages/Login/Login';
+import Welcome from '../Pages/StructuresPages/Welcome/Welcome';
+import Register from '../Pages/StructuresPages/Register/Register';
 import AdminMainPage from '../Pages/homwUserAdmin/MainPage/adminMainPage';
 import mainPageSimple from '../Pages/SimpleUser/MainPage/mainPageSimple';
-import NoMatch from '../Pages/NoMatch/noMatch';
+import NoMatch from '../Pages/StructuresPages/NoMatch/noMatch';
 import { ProtectedRoute } from './ProtectedRoute';
+import FrogotPass from '../Pages/StructuresPages/FrogotPass/FrogotPass'
 
 class AppRoutes extends Component {
 
@@ -20,6 +21,7 @@ class AppRoutes extends Component {
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
               <Route path="/user" component={mainPageSimple} />
+              <Route path="/frogot" component={FrogotPass} />
               <ProtectedRoute exact path="/admin" component={AdminMainPage} />
               <ProtectedRoute exact path="/user" component={mainPageSimple} />
               <Route component={NoMatch} />

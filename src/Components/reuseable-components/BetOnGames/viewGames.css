@@ -1,0 +1,15 @@
+.instruction {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.table thead tr th{
+  color: black;
+}
+
+.table tbody tr td{
+  color: black;
+}
+
+
+

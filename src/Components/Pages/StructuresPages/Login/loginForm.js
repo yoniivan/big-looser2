@@ -49,12 +49,15 @@ const LoginForm = (props) => {
                         </span>
                         </div>
                         <div className="btn-div">
+
                         <Button 
                             variant="primary" 
                             className="login-btn" 
                             type="submit"
                             onClick={props.click}
-                            >Log In</Button></div>
+                            disabled={props.load}
+                            >Log In</Button>
+                            </div> 
                     </div>
                     <div className="footer-login">
                     <Card.Footer className="text-muted">New to BigLooser? <Link

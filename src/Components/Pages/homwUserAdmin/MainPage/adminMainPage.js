@@ -7,7 +7,7 @@ import Users from '../Users/Users';
 import AdminWelcomePage from '../AdminWelcomePage/AdminWelcomePage';
 import * as actionTypes from '../../../Store/Actions';
 import Standings from '../../SimpleUser/Standings/standings';
-import ViewGamesSimple from '../../SimpleUser/ViewGames/viewGames';
+import ViewGamesSimple from '../../../reuseable-components/BetOnGames/viewGames';
 import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
 
 

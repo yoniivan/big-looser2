@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import './Login.css';
 import { connect } from 'react-redux';
 import LoginForm from './loginForm';
-import axios from '../../Utils/axios-users';
-import setAuthorizationToken from '../../Utils/setAuthorizationToken';
+import axios from '../../../Utils/axios-users';
+import setAuthorizationToken from '../../../Utils/setAuthorizationToken';
 import jwt_decode from 'jwt-decode';
-import * as actionTypes from '../../Store/Actions';
-import logo from '../../../Assets/bigLooserLogo.png';
+import * as actionTypes from '../../../Store/Actions';
+import logo from '../../../../Assets/bigLooserLogo.png';
+import { Link } from 'react-router-dom';
+
 
 
 class Login extends Component {
@@ -24,6 +26,8 @@ class Login extends Component {
         },
         isLogin: false,
         networkErrorMessage: "",
+
+        loading: false,
     }
 
     
@@ -71,6 +75,7 @@ class Login extends Component {
         }
         this.loginVertification().then(isValid => {
             if(isValid){
+                this.setState({loading: true})
                 axios.post('/login', login).then(dataLogin => {
                     if(dataLogin.status === 200){
                         localStorage.setItem('token', dataLogin.data.token);
@@ -89,7 +94,7 @@ class Login extends Component {
                                 groupName: decode.groupName,
                             }
                             this.props.saveUserParams(userParams);
-                            this.setState({ isLogin: true });
+                            this.setState({ isLogin: true, loading: false });
                             
                             if (userParams.isAdmin){
                                 this.props.switchPage('/admin', 'Log-out');
@@ -101,13 +106,15 @@ class Login extends Component {
                         }
                     }
                 }).catch(err => {
-                    this.setState({networkErrorMessage: '* Your Email or Password are incorect'});
+                    this.setState({networkErrorMessage: '* Your Email or Password are incorect', loading: false});
                 });
             }
         });
     }
 
     render() {
+        
+
 
         let userNameStyle = "hideErrorMessage";
         let passwordStyle = "hideErrorMessage";
@@ -130,13 +137,14 @@ class Login extends Component {
                     <span className="big-login">Big <span className="looser-login">Looser</span> </span>
                 </div>
                 <div>
-                <LoginForm className="login-form"
+                {!this.state.loading ? <LoginForm className="login-form"
                     email={this.state.email.value}
                     emailChange={this.emailHandler}
                     password={this.state.password.value}
                     passwordChange={this.passwordHandler}
                     click={this.loginHandler}
                     href={this.props.page}
+                    // load={this.state.loading}
 
                     userNameShow={userNameStyle || ''}
                     errorUserName={this.state.email.message || ''}
@@ -146,8 +154,15 @@ class Login extends Component {
 
                     networkErrorSpan={networkErrorSpan || ''}
                     errorNetworkMessage={this.state.networkErrorMessage || ''}
-                />
+                />  : <div id="sppiner" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
                 </div>
+
+                <div> {!this.state.loading ? 
+                    <Link className="frogPass" to="/frogot">
+                        Forgot your password? 
+                </Link> : null}
+                </div>
+                
             </div>
         );
 
@@ -172,47 +187,3 @@ const mapDispachToProps = dispatch => {
 export default connect(mapStateToProps, mapDispachToProps)(Login)
 
 
-
-
-// loginHandler = () => {
-
-//     const login = {
-//         eMail: this.state.email.value,
-//         password: this.state.password.value,
-//     }
-//     if(this.loginVertification()){
-//         axios.post('/login', login).then(dataLogin => {
-//             if(!dataLogin.data.token){
-//                 this.props.history.push('/');
-//             }else{
-//                 localStorage.setItem('token', dataLogin.data.token);
-//                 setAuthorizationToken(dataLogin.data.token);
-//                 if (dataLogin.data.token) {
-//                     const decode = jwt_decode(dataLogin.data.token);
-//                     const userParams = {
-//                         token: dataLogin.data.token,
-//                         id: decode._id,
-//                         email: decode.eMail,
-//                         firstName: decode.firstName,
-//                         lastName: decode.lastName,
-//                         isAdmin: decode.isAdmin,
-//                         groupName: decode.groupName,
-//                     }
-//                     this.props.saveUserParams(userParams);
-//                     this.setState({ isLogin: true });
-//                     if (userParams.isAdmin){
-//                         this.props.switchPage('/admin', 'Log-out');
-//                         this.props.history.push('/admin');
-//                     }else{
-//                         this.props.switchPage('/user', 'Log-out');
-//                         this.props.history.push('/user');
-//                     }
-//                 }
-//                 else{
-//                     // Need to handle in UI
-//                     console.log("No token");
-//                 }
-//             }
-//         });
-//     }
-// }

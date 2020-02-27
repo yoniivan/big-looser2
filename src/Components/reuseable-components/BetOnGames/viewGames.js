@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-import axios from '../../../Utils/axios-users';
+import axios from '../../../Components/Utils/axios-users';
+
 import GamesTableSimple from './gamesTableSimple';
 import './viewGames.css';
 import { Card } from 'react-bootstrap';
-import '../../stylingCommon.css'
+import '../../../Components/Pages/stylingCommon.css'
 
 class ViewGamesSimple extends Component {
 
@@ -99,7 +100,7 @@ class ViewGamesSimple extends Component {
                                         </tr>
                                     </thead>
                                     
-                                    <GamesTableSimple 
+                                    <GamesTableSimple className="GamesTableSimple"
                                         games={this.state.games}
                                         drop1={this.dropGame1Handle}
                                         drop2={this.dropGame2Handle}

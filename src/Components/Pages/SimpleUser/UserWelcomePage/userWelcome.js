@@ -45,7 +45,7 @@ class UserWelcome extends Component {
         return(
             <div>
                 <div>
-                    <p>{this.state.date}</p>
+                    <p>Last update: {this.state.date}</p>
                 </div>
                 <div className="message">
                     <h4>{title}</h4>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import jwt_decode from 'jwt-decode';
 import './mainPage_simple.css';
 import * as actionTypes from '../../../Store/Actions';
-import ViewGamesSimple from '../ViewGames/viewGames';
+import ViewGamesSimple from '../../../reuseable-components/BetOnGames/viewGames';
 import UserWelcome from '../UserWelcomePage/userWelcome';
 import Standings from '../Standings/standings';
 import { checkExpireToken, logOut } from '../../../Utils/setAuthorizationToken';
